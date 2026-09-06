@@ -1,96 +1,200 @@
 import React from 'react';
 import Link from 'next/link';
-import styles from '@/styles/subpage.module.css';
-import shared from '@/styles/shared.module.css';
+import styles from './about.module.css';
+
+const stats = [
+  { number: '2013', label: 'Year Established', desc: 'Founded in Bangalore by Vinod & Sunil' },
+  { number: '2,500', label: 'Sq. Ft. HQ Facility', desc: 'Warehousing in Yeshwanthpur, Bangalore' },
+  { number: '100%', label: 'Certified Compliance', desc: 'Govt. ISO 13485 & MSME Registered' },
+  { number: '10+ Yrs', label: 'Subcontinent Supply', desc: 'Trusted by leading surgeons & hospitals' },
+];
 
 const principles = [
   {
+    icon: '🤝',
     title: '1. Honesty',
-    body: 'Being honest we build a stronger trust with our customers. In turn, having high integrity gives customers confidence.',
+    body: 'Being honest we build a stronger trust with our customers. In turn, having high integrity gives healthcare providers complete confidence in our products.',
   },
   {
+    icon: '❤️',
     title: '2. Sincerity',
-    body: 'It is important to our consumers, to our company, and to one’s self. We do things with utmost care, love and non-attachment.',
+    body: 'We prioritize surgeon and patient requirements over selling. We do things with utmost care, dedication, and non-attachment.',
   },
   {
+    icon: '⭐',
     title: '3. Excellence',
-    body: 'We strive for betterment at each and every level of our organization, motivating ourselves to become better than yesterday.',
+    body: 'We strive for betterment at each and every level of our supply network, continuously motivating ourselves to surpass benchmark quality standards.',
+  },
+];
+
+const teamMembers = [
+  {
+    name: 'Vinod Kumar',
+    role: 'Co-Founder & Managing Director',
+    bio: 'Founded MediOrtho Link in 2013. Dedicated to bringing international quality orthopaedic implants to healthcare providers.',
+    image: '/images/68f222a1a881f028d1757038_Frame_100.webp',
+  },
+  {
+    name: 'Sunil Kumar',
+    role: 'Co-Founder & Operations Director',
+    bio: 'Co-founded MediOrtho Link in 2013. Directs commercial distribution, OT fulfillment, and surgeon partnerships.',
+    image: '/images/696a7f5a729a13aa3d7cadbd_Frame_100_2.webp',
+  },
+  {
+    name: 'Dr. A. R. Sharma',
+    role: 'Clinical Advisory Lead',
+    bio: 'Transforms clinical feedback into precision-engineered implants through active surgeon collaboration.',
+    image: '/images/696a5e89f27fd687fae01719_Frame_100_1.webp',
+  },
+  {
+    name: 'Rajesh V. N.',
+    role: 'Quality & Regulatory Head',
+    bio: 'Oversees 100% ISO & MSME regulatory compliance and batch quality verification across all surgical goods.',
+    image: '/images/696a7f5fcdcb2611feabd1a4_Frame_100.webp',
   },
 ];
 
 export default function AboutPage() {
   return (
     <div className={styles.page}>
-      <div className={styles.inner}>
-        {/* Header */}
-        <div className={styles.header}>
-          <span className={styles.eyebrow}>ABOUT MEDIORTHO LINK</span>
-          <h1 className={`${styles.title} ${styles.titleLarge}`}>
-            Transforming Clinical Insights into <span className={styles.accent}>Tangible Implants</span>
+      <div className={styles.container}>
+        
+        {/* Hero Section */}
+        <div className={styles.hero}>
+          <span className={styles.badge}>ABOUT MEDIORTHO LINK • BANGALORE</span>
+          <h1 className={styles.heroTitle}>
+            Transforming Clinical Insights into <span className={styles.heroAccent}>Tangible Surgical Implants</span>
           </h1>
-          <p className={styles.lede}>
-            Founded in 2013 in Bangalore by Vinod Kumar &amp; Sunil Kumar, MediOrtho Link is a leading distributor of Orthopaedic Implants &amp; Surgical Goods certified by the Government of India with ISO &amp; MSME Registration.
+          <p className={styles.heroLede}>
+            Founded in 2013 by <strong>Vinod Kumar</strong> &amp; <strong>Sunil Kumar</strong>, MediOrtho Link is a leading Government of India ISO &amp; MSME certified distributor of orthopaedic implants &amp; surgical goods operating from a 2,500 sq. ft. facility in Yeshwanthpur, Bangalore.
           </p>
         </div>
 
-        {/* Company Overview Card */}
-        <div className={`${styles.card} ${styles.cardSpaced}`}>
-          <h2 className={styles.cardTitle}>Our Story &amp; Facility</h2>
-          <p className={styles.cardBody}>
-            MediOrtho Link was founded in the year 2013 in Bangalore, by Vinod Kumar &amp; Sunil Kumar. We are Distributors of Orthopaedic Implants &amp; Surgical Goods, certified by the Government of India with ISO &amp; MSME Registration. Operating from a 2,500 square feet office space at Yeshwanthpur, Bangalore, we are dedicated to innovation, manufacturing, and marketing of medical implants and instruments with a focus on &apos;global quality&apos; in the implants field.
-          </p>
-          <p className={styles.cardBody}>
-            To be a favored partner to reliable &amp; innovative medical device and equipment manufacturers, we provide clinical and commercial expertise, a strong sales network, and a deep knowledge of the healthcare market in the Indian subcontinent. We go beyond physical products by partnering with orthopedic surgeons, healthcare professionals, and medical academicians in our pursuit of transforming clinical insights into tangible implants.
-          </p>
+        {/* Key Metrics Stats */}
+        <div className={styles.statsGrid}>
+          {stats.map((item, idx) => (
+            <div key={idx} className={styles.statCard}>
+              <div className={styles.statNumber}>{item.number}</div>
+              <div className={styles.statLabel}>{item.label}</div>
+              <p className={styles.statDesc}>{item.desc}</p>
+            </div>
+          ))}
         </div>
 
-        {/* Customer Service & Vision Cards */}
-        <div className={styles.grid}>
-          <div className={styles.tile}>
-            <div className={styles.tileIcon}>🤝</div>
-            <h3 className={styles.tileTitle}>Customer Service</h3>
-            <p className={styles.tileBody}>
-              We at MediOrtho Link believe in high quality and exceptional customer service. We understand customers&apos; needs and help them to fulfill their requirements instead of focusing on selling our product.
+        {/* Our Story & Founders Spotlight */}
+        <div className={styles.storyGrid}>
+          <div className={styles.storyContent}>
+            <h2 className={styles.storyTitle}>Our Journey &amp; Clinical Mission</h2>
+            <p className={styles.storyPara}>
+              MediOrtho Link was established in 2013 in Bangalore with a mission to bridge the gap between world-class orthopaedic engineering and surgeons in the Indian subcontinent. Operating out of a 2,500 square feet facility at Yeshwanthpur, we manufacture and distribute global-grade surgical implants and operating room tools.
+            </p>
+            <p className={styles.storyPara}>
+              Beyond supplying physical products, we actively partner with orthopaedic surgeons, medical academicians, and healthcare centers. We listen to clinical feedback in the operating theater and transform surgical insights into durable, high-precision implants designed for superior anatomical performance.
             </p>
           </div>
 
-          <div className={styles.tile}>
-            <div className={styles.tileIcon}>🎯</div>
-            <h3 className={styles.tileTitle}>Our Vision</h3>
-            <p className={styles.tileBody}>
-              We always want to keep an eye on the latest trends and put our customers&apos; wishes first. The interests of our customers are always the top priority for us. Finally, we want to bring a positive change to the Healthcare sector in India.
-            </p>
+          <div className={styles.founderCard}>
+            <img
+              src="/images/698c2f523d1538d40003f912_Frame_1000003074.webp"
+              alt="Vinod Kumar & Sunil Kumar"
+              className={styles.founderImage}
+            />
+            <div className={styles.founderBody}>
+              <h3 className={styles.founderName}>Vinod Kumar &amp; Sunil Kumar</h3>
+              <p className={styles.founderRole}>Founders, MediOrtho Link (Est. 2013)</p>
+              <p className={styles.founderQuote}>
+                &ldquo;Our commitment is built on conscious business principles &mdash; prioritizing surgeon trust, patient safety, and genuine healthcare value above transactions.&rdquo;
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Core Values Section */}
-        <div className={`${styles.panel} ${styles.panelSpaced}`}>
-          <div className={styles.panelHeader}>
-            <span className={styles.panelEyebrow}>CONSCIOUS BUSINESS MODEL</span>
-            <h2 className={styles.panelTitle}>Our 3 Core Principles</h2>
-            <p className={styles.panelSub}>
-              MediOrtho Link works on a conscious business model, maximizing monetary benefits along with the happiness and success of everyone connected with us.
+        <div className={styles.valuesSection}>
+          <div className={styles.valuesHeader}>
+            <span className={styles.valuesEyebrow}>CONSCIOUS BUSINESS MODEL</span>
+            <h2 className={styles.valuesTitle}>Our 3 Core Principles</h2>
+            <p className={styles.valuesLede}>
+              MediOrtho Link works on a conscious business model, maximizing value alongside the happiness, trust, and success of everyone connected with us.
             </p>
           </div>
 
-          <div className={styles.panelGrid}>
-            {principles.map((item) => (
-              <div key={item.title} className={styles.panelCard}>
-                <h4 className={styles.panelCardTitle}>{item.title}</h4>
-                <p className={styles.panelCardBody}>{item.body}</p>
+          <div className={styles.valuesGrid}>
+            {principles.map((item, idx) => (
+              <div key={idx} className={styles.valueCard}>
+                <span className={styles.valueIcon}>{item.icon}</span>
+                <h4 className={styles.valueName}>{item.title}</h4>
+                <p className={styles.valueText}>{item.body}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* CTA */}
-        <div className={styles.centered}>
-          <Link href="/contact" className={shared.primaryButton}>
-            <div className={shared.primaryButtonText}>GET IN TOUCH WITH MEDI ORTHO LINK</div>
-            <div className={shared.primaryButtonBg}></div>
+        {/* Facility & Customer Service Grid */}
+        <div className={styles.facilityGrid}>
+          <div className={styles.facilityCard}>
+            <div className={styles.facilityIcon}>🏢</div>
+            <h3 className={styles.facilityTitle}>2,500 Sq. Ft. Distribution HQ</h3>
+            <p className={styles.facilityText}>
+              Located strategically in Yeshwanthpur, Bangalore, our modern warehouse facility maintains controlled sterile inventory and rapid 24/7 emergency dispatch to operating suites across Karnataka and South India.
+            </p>
+          </div>
+
+          <div className={styles.facilityCard}>
+            <div className={styles.facilityIcon}>🛡️</div>
+            <h3 className={styles.facilityTitle}>Govt. ISO &amp; MSME Certified</h3>
+            <p className={styles.facilityText}>
+              Certified by the Government of India with ISO 13485 quality management system compliance and MSME registration, guaranteeing strict traceability and high biological safety standards.
+            </p>
+          </div>
+        </div>
+
+        {/* Leadership Team Preview */}
+        <div className={styles.teamSection}>
+          <div className={styles.teamHeader}>
+            <span className={styles.teamEyebrow}>LEADERSHIP &amp; SPECIALISTS</span>
+            <h2 className={styles.teamTitle}>Meet Our Leadership Team</h2>
+          </div>
+
+          <div className={styles.teamGrid}>
+            {teamMembers.map((member, idx) => (
+              <div key={idx} className={styles.teamMemberCard}>
+                <img src={member.image} alt={member.name} className={styles.memberAvatar} />
+                <h4 className={styles.memberName}>{member.name}</h4>
+                <p className={styles.memberRole}>{member.role}</p>
+                <p className={styles.memberBio}>{member.bio}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom CTA */}
+        <div className={styles.ctaWrap}>
+          <Link
+            href="/contact"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '10px',
+              backgroundColor: '#0ea5e9',
+              color: '#ffffff',
+              padding: '16px 36px',
+              borderRadius: '9999px',
+              fontWeight: 800,
+              fontSize: '15px',
+              letterSpacing: '0.05em',
+              textDecoration: 'none',
+              boxShadow: '0 8px 24px rgba(14, 165, 233, 0.4)',
+              transition: 'transform 0.2s ease, background-color 0.2s ease',
+            }}
+          >
+            CONNECT WITH MEDI ORTHO LINK LEADERSHIP →
           </Link>
         </div>
+
       </div>
     </div>
   );
 }
+
