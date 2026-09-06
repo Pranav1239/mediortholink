@@ -42,9 +42,11 @@ export default function Navbar() {
 
   const closeMenu = () => setMenuOpen(false);
 
+  const isSubpage = pathname !== '/';
+
   const headerClass = [
     styles.header,
-    scrolled ? styles.headerScrolled : '',
+    scrolled || isSubpage ? styles.headerScrolled : '',
     menuOpen ? styles.headerMenuOpen : '',
   ]
     .filter(Boolean)
