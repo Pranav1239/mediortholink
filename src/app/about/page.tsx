@@ -11,80 +11,58 @@ export default function AboutPage() {
   return (
     <div style={{ paddingTop: "100px" }}>
       
-      {/* 1. ABOUT HERO SECTION */}
-      <section className={styles.discoverSection} style={{ paddingTop: "60px" }}>
-        <Image
-          src="/images/695a5bffebea08352d2f46f6_675d6fafc8d538425e0683dd_about-vector_1.webp"
-          width={2832}
-          height={4580}
-          sizes="(max-width: 479px) 22rem, (max-width: 767px) 28rem, (max-width: 991px) 36rem, 44.25rem"
-          alt=""
-          aria-hidden="true"
-          className={styles.aboutBackground}
-        />
-        <div className={styles.aboutWrapper}>
-          <div className={shared.container}>
-            <div className={styles.aboutBottom}>
-              <div className={styles.aboutLeft}>
-                <div className={styles.aboutTop}>
-                  <div className={styles.aboutFlex}>
-                    <Image src={badgeIcon} width={22} height={21} alt="" aria-hidden="true" className={styles.aboutIcon} />
-                    <p className={styles.aboutYear}>ABOUT MEDI ORTHO LINK • EST. 2013</p>
-                  </div>
-                  <h1 className={styles.aboutTitle}>
-                    Transforming Clinical Insights into <span className={styles.primaryColor}>Tangible Implants</span>
-                  </h1>
-                  <p className={styles.aboutPara}>
-                    MediOrtho Link was founded in the year 2013 in Bangalore by Vinod Kumar &amp; Sunil Kumar. We are Distributors of Orthopaedic Implants &amp; Surgical Goods, certified by the Government of India with ISO &amp; MSME Registration. Operating from a 2,500 square feet facility at Yeshwanthpur, Bangalore, we are dedicated to innovation, manufacturing, and marketing of medical implants with a focus on global quality standards across the Indian subcontinent.
-                  </p>
-                  <div>
-                    <Link href="/contact" className={shared.primaryButton}>
-                      <div className={shared.primaryButtonText}>CONNECT WITH US</div>
-                      <div className={shared.primaryButtonBg}></div>
-                    </Link>
-                  </div>
+      {/* 1. ABOUT HERO SECTION (Redesigned per Reference Image) */}
+      <section className={styles.aboutHeroNewSection}>
+        <div className={shared.container}>
+          <div className={styles.aboutHeroNewWrapper}>
+            {/* Left Content Column */}
+            <div className={styles.aboutHeroNewLeft}>
+              <span className={styles.aboutHeroPillTag}>ABOUT US</span>
+              <h1 className={styles.aboutHeroNewTitle}>About MediOrtho Link</h1>
+              <p className={styles.aboutHeroNewPara}>
+                At MediOrtho Link, we pride ourselves on delivering tailored surgical &amp; implant solutions that empower healthcare providers and surgeons to thrive. Operating from a 2,500 sq. ft. facility in Yeshwanthpur, Bangalore, our dedicated team is committed to driving clinical excellence and high quality standards.
+              </p>
+              
+              {/* Action Buttons Row */}
+              <div className={styles.aboutHeroButtonsRow}>
+                <Link href="/services" className={styles.aboutHeroPrimaryBtn}>
+                  Explore Products &rarr;
+                </Link>
+                <Link href="/contact" className={styles.aboutHeroSecondaryBtn}>
+                  Contact Us
+                </Link>
+              </div>
+
+              {/* Divider Line */}
+              <div className={styles.aboutHeroDivider}></div>
+
+              {/* Stats Metrics Row */}
+              <div className={styles.aboutHeroMetricsRow}>
+                <div className={styles.aboutHeroMetricItem}>
+                  <span className={styles.aboutHeroMetricNumber}>12+</span>
+                  <span className={styles.aboutHeroMetricLabel}>Years of Industry Experience</span>
                 </div>
-                <div className={styles.aboutLine}></div>
-                <div className={styles.aboutGrid}>
-                  <div className={styles.aboutContent}>
-                    <p className={styles.innovative}>Global Quality Implants</p>
-                    <p className={styles.aboutParaTight}>We market top-grade orthopaedic implants and instruments engineered for precision and durability.</p>
-                  </div>
-                  <div className={styles.aboutContent}>
-                    <p className={styles.innovative}>Surgeon &amp; Clinical Partnerships</p>
-                    <p className={styles.aboutParaTight}>We partner with orthopedic surgeons and academicians to transform clinical insights into tangible surgical solutions.</p>
-                  </div>
+                <div className={styles.aboutHeroMetricItem}>
+                  <span className={styles.aboutHeroMetricNumber}>2,500</span>
+                  <span className={styles.aboutHeroMetricLabel}>Sq. Ft. Bangalore Facility</span>
                 </div>
-                <div className={styles.appointmentCard}>
-                  <div className={styles.appointmentFlex}>
-                    <Image
-                      src="/images/698c2f523d1538d40003f912_Frame_1000003074.webp"
-                      width={261}
-                      height={270}
-                      loading="lazy"
-                      alt="Founders"
-                      className={styles.appointmentImage}
-                    />
-                    <div className={styles.appointmentBlock}>
-                      <p className={styles.appointmentAuthorName}>Vinod Kumar &amp; Sunil Kumar</p>
-                      <p className={styles.appointmentAuthorDesignation}>Founders, MediOrtho Link</p>
-                    </div>
-                  </div>
-                  <Link href="/contact" className={`${shared.primaryButton} ${shared.primaryButtonAppointment}`}>
-                    <div className={shared.primaryButtonText}>Contact Founders</div>
-                    <div className={`${shared.primaryButtonBg} ${shared.primaryButtonBgAppointment}`}></div>
-                  </Link>
+                <div className={styles.aboutHeroMetricItem}>
+                  <span className={styles.aboutHeroMetricNumber}>100%</span>
+                  <span className={styles.aboutHeroMetricLabel}>ISO &amp; MSME Govt. Certified</span>
                 </div>
               </div>
-              <div className={styles.aboutRight}>
+            </div>
+
+            {/* Right Portrait Image Column */}
+            <div className={styles.aboutHeroNewRight}>
+              <div className={styles.aboutHeroImageWrapper}>
                 <Image
                   src="/images/698c244c655aa1ba0a300fa1_Frame_1000003067.webp"
-                  width={1884}
-                  height={2046}
-                  loading="lazy"
-                  sizes="(max-width: 767px) 100vw, 45vw"
-                  alt="MediOrtho Link Office"
-                  className={styles.aboutImage}
+                  width={1200}
+                  height={1400}
+                  priority
+                  alt="MediOrtho Link Founders and Headquarters"
+                  className={styles.aboutHeroMainImage}
                 />
               </div>
             </div>
