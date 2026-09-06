@@ -1725,3 +1725,213 @@
     padding: 1.5rem;
   }
 }
+
+/* =============================================================
+   ABOUT DESIGN SECTION (Reference Image Layout)
+   ============================================================= */
+
+.aboutDesignSection {
+  position: relative;
+  padding-top: var(--space-colossal);
+  padding-bottom: var(--space-colossal);
+  background-color: #ffffff;
+}
+
+.aboutDesignWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  width: 100%;
+}
+
+.aboutDesignHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  width: 100%;
+}
+
+.aboutDesignHeaderLeft {
+  max-width: 46rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.aboutDesignSubtag {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-medium-gray);
+  letter-spacing: 0.02em;
+}
+
+.aboutDesignTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-dark-gray);
+}
+
+.aboutDesignMetrics {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding-bottom: 0.25rem;
+}
+
+.metricItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+
+.metricNumber {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--color-azure);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.metricLabel {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-medium-gray);
+  white-space: nowrap;
+}
+
+.aboutDesignBody {
+  display: grid;
+  grid-template-columns: 0.75fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+  width: 100%;
+}
+
+.aboutDesignImageCard {
+  width: 100%;
+  height: 100%;
+  min-height: 28rem;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.aboutDesignMainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1.5rem;
+  display: block;
+}
+
+.aboutDesignCardsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.aboutDesignCardRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.aboutDesignCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  gap: 1.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.aboutDesignCardBlue {
+  background-color: #ebf3fe;
+}
+
+.aboutDesignCardGray {
+  background-color: #f5f6f8;
+}
+
+.aboutDesignCardFull {
+  width: 100%;
+}
+
+.aboutDesignCardTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.3;
+}
+
+.aboutDesignCardDesc {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #475569;
+  flex-grow: 1;
+}
+
+.aboutDesignPillBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 2rem;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1e293b;
+  text-decoration: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.aboutDesignPillBtn:hover {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  color: var(--color-azure);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateX(2px);
+}
+
+.chevron {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+@media screen and (max-width: 991px) {
+  .aboutDesignHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .aboutDesignBody {
+    grid-template-columns: 1fr;
+  }
+  .aboutDesignImageCard {
+    height: 22rem;
+    min-height: auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .aboutDesignMetrics {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .aboutDesignCardRow {
+    grid-template-columns: 1fr;
+  }
+  .aboutDesignTitle {
+    font-size: 1.75rem;
+  }
+}

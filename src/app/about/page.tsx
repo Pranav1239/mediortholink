@@ -3,7 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import FallingPills from "@/components/FallingPills";
 import styles from "@/app/page.module.css";
 import shared from "@/styles/shared.module.css";
 const badgeIcon = "/images/68f06809395a46f2d4696554_Group_3.svg";
@@ -134,66 +133,88 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 3. METRICS & SPECIALITIES SECTION WITH ANIMATED PILLS */}
-      <section className={styles.specialitiesSection}>
+      {/* 3. EXCELLENCE & INFRASTRUCTURE SECTION (Redesigned per Reference Image) */}
+      <section className={styles.aboutDesignSection}>
         <div className={shared.container}>
-          <div className={styles.specialitiesWrapper}>
-            <div className={styles.specialitiesTop}>
-              <div className={styles.specialitiesReviewsBlock}>
+          <div className={styles.aboutDesignWrapper}>
+            
+            {/* Top Header Row */}
+            <div className={styles.aboutDesignHeader}>
+              <div className={styles.aboutDesignHeaderLeft}>
+                <p className={styles.aboutDesignSubtag}>Govt. Certified ISO &amp; MSME</p>
+                <h2 className={styles.aboutDesignTitle}>
+                  MediOrtho Link provides global quality implants for surgical excellence.
+                </h2>
+              </div>
+              <div className={styles.aboutDesignMetrics}>
+                <div className={styles.metricItem}>
+                  <span className={styles.metricNumber}>12+ Yrs</span>
+                  <span className={styles.metricLabel}>Industry Experience</span>
+                </div>
+                <div className={styles.metricItem}>
+                  <span className={styles.metricNumber}>2,500</span>
+                  <span className={styles.metricLabel}>Sq. Ft. Facility</span>
+                </div>
+                <div className={styles.metricItem}>
+                  <span className={styles.metricNumber}>100%</span>
+                  <span className={styles.metricLabel}>ISO &amp; MSME Certified</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Main Body Grid */}
+            <div className={styles.aboutDesignBody}>
+              {/* Left Tall Portrait Image Card */}
+              <div className={styles.aboutDesignImageCard}>
                 <Image
-                  src="/images/698cb0ec8dd97e738a4fcc31_68edc1f42af732005a59daa8_stars-5-1-1_1.webp"
-                  width={344}
-                  height={64}
-                  loading="lazy"
-                  alt="Stars"
-                  className={styles.specialitiesIcons}
+                  src="/images/698c244c655aa1ba0a300fa1_Frame_1000003067.webp"
+                  width={1200}
+                  height={1400}
+                  alt="MediOrtho Link Infrastructure & Implants"
+                  className={styles.aboutDesignMainImage}
                 />
-                <p className={styles.totalReviews}>Govt. Certified ISO &amp; MSME</p>
               </div>
-              <h2 className={styles.specialitiesTitle}>MediOrtho Link provides global quality implants for surgical excellence.</h2>
-              <p className={styles.specialitiesDesp}>Reliable distributor of Orthopaedic Implants &amp; Surgical Goods in Bangalore since 2013.</p>
-            </div>
-            <div className={styles.specialitiesBottom}>
-              <div className={styles.specialitiesCards}>
-                <div className={styles.specialitiesCard}>
-                  <div className={styles.specialitiesContent}>
-                    <p className={styles.expertText}>2500 Sq. Ft. Facility</p>
-                    <div className={styles.empoweringCounterFlexSpecialities}>
-                      <h2 className={styles.empoweringCounterTextSpecialities}>2013</h2>
-                      <h2 className={styles.empoweringCounterTextSpecialities}> Est.</h2>
-                    </div>
-                    <p className={styles.expertDesp}>Headquartered at Yeshwanthpur Bangalore with modern warehousing and quality assurance facilities.</p>
+
+              {/* Right Cards Grid */}
+              <div className={styles.aboutDesignCardsGrid}>
+                {/* Top Cards Row */}
+                <div className={styles.aboutDesignCardRow}>
+                  {/* Card 1: Light Pastel Blue */}
+                  <div className={`${styles.aboutDesignCard} ${styles.aboutDesignCardBlue}`}>
+                    <h3 className={styles.aboutDesignCardTitle}>ISO &amp; MSME Certified</h3>
+                    <p className={styles.aboutDesignCardDesc}>
+                      Certified by the Government of India with ISO and MSME registration, ensuring maximum surgical precision and international safety standards.
+                    </p>
+                    <Link href="/services" className={styles.aboutDesignPillBtn}>
+                      Read More <span className={styles.chevron}>&rsaquo;</span>
+                    </Link>
+                  </div>
+
+                  {/* Card 2: Neutral Off-White */}
+                  <div className={`${styles.aboutDesignCard} ${styles.aboutDesignCardGray}`}>
+                    <h3 className={styles.aboutDesignCardTitle}>2,500 Sq. Ft. Hub</h3>
+                    <p className={styles.aboutDesignCardDesc}>
+                      Operating from our modern facility in Yeshwanthpur, Bangalore, equipped for warehousing and 24/7 OT emergency fulfillment.
+                    </p>
+                    <Link href="/contact" className={styles.aboutDesignPillBtn}>
+                      Read More <span className={styles.chevron}>&rsaquo;</span>
+                    </Link>
                   </div>
                 </div>
-                <div className={`${styles.specialitiesCard} ${styles.specialitiesCard02}`}>
-                  <div className={styles.personalizedFlex}>
-                    <div className={styles.empoweringCounterFlexSpecialities2}>
-                      <h2 className={styles.empoweringCounterTextSpecialities}>100</h2>
-                      <h2 className={styles.empoweringCounterTextSpecialities}>%</h2>
-                    </div>
-                    <p className={styles.personalizedText}>Certified Compliance</p>
-                  </div>
-                  <div className={styles.specialitiesSmallCardContent}>
-                    <p className={styles.expertDesp02}>Certified by Government of India with ISO &amp; MSME registration for highest healthcare safety.</p>
-                  </div>
-                </div>
-              </div>
-              <div className={`${styles.specialitiesCards} ${styles.specialitiesCards02}`}>
-                <FallingPills />
-                <div className={`${styles.specialitiesCard} ${styles.specialitiesCard04}`}>
-                  <div className={styles.personalizedFlex04}>
-                    <p className={styles.expertText}>Subcontinent Distribution</p>
-                    <div className={styles.empoweringCounterFlexSpecialities2}>
-                      <h2 className={styles.empoweringCounterTextSpecialities}>10+</h2>
-                      <h2 className={styles.empoweringCounterTextSpecialities}> Yrs</h2>
-                    </div>
-                  </div>
-                  <div className={styles.specialitiesSmallCardContent}>
-                    <p className={styles.expertDesp03}>Over a decade of trusted supply of orthopaedic implants &amp; surgical goods to leading healthcare providers.</p>
-                  </div>
+
+                {/* Bottom Card: Full-width */}
+                <div className={`${styles.aboutDesignCard} ${styles.aboutDesignCardGray} ${styles.aboutDesignCardFull}`}>
+                  <h3 className={styles.aboutDesignCardTitle}>Pan-India &amp; Subcontinent Supply</h3>
+                  <p className={styles.aboutDesignCardDesc}>
+                    Over a decade of trusted distribution of orthopaedic joint replacements, trauma plates, and specialized surgical instruments to leading healthcare providers.
+                  </p>
+                  <Link href="/services" className={styles.aboutDesignPillBtn}>
+                    Read More <span className={styles.chevron}>&rsaquo;</span>
+                  </Link>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
