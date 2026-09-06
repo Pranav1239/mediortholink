@@ -28,7 +28,7 @@ export default function ProductsPage() {
   });
 
   return (
-    <div style={{ paddingTop: '130px', paddingBottom: '100px', backgroundColor: '#f8fafc', minHeight: '100vh' }}>
+    <div style={{ paddingTop: '130px', paddingBottom: '100px', backgroundColor: '#ffffff', minHeight: '100vh' }}>
       <div className="container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem' }}>
         
         {/* Page Hero Header */}
