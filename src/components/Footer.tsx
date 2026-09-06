@@ -35,7 +35,6 @@ export default function Footer() {
                 <li><Link href="/" className={styles.footerLink}>Home</Link></li>
                 <li><Link href="/about" className={styles.footerLink}>About Us</Link></li>
                 <li><Link href="/services" className={styles.footerLink}>Products</Link></li>
-                <li><Link href="/team" className={styles.footerLink}>Leadership</Link></li>
                 <li><Link href="/faqs" className={styles.footerLink}>FAQs</Link></li>
                 <li><Link href="/contact" className={styles.footerLink}>Contact Us</Link></li>
               </ul>

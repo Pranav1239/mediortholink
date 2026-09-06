@@ -9,7 +9,6 @@ const mainNavLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About Us' },
   { href: '/services', label: 'Products' },
-  { href: '/team', label: 'Leadership' },
   { href: '/faqs', label: 'FAQs' },
 ];
 

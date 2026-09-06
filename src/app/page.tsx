@@ -292,8 +292,8 @@ export default function HomePage() {
                 Founded by Vinod Kumar &amp; Sunil Kumar in 2013, MediOrtho Link combines deep technical expertise with commercial knowledge across the Indian subcontinent.
               </p>
               <div>
-                <Link href="/team" className={shared.primaryButton}>
-                  <div className={shared.primaryButtonText}>MEET FULL TEAM</div>
+                <Link href="/about" className={shared.primaryButton}>
+                  <div className={shared.primaryButtonText}>MORE ABOUT US</div>
                   <div className={shared.primaryButtonBg}></div>
                 </Link>
               </div>
@@ -311,7 +311,7 @@ export default function HomePage() {
                       className={styles.expertImage}
                     />
                   </div>
-                  <Link href="/team" className={styles.cardContentWrap}>
+                  <Link href="/about" className={styles.cardContentWrap}>
                     <p className={styles.expertDesignation}>{person.role}</p>
                     <p className={styles.expertName}>{person.name}</p>
                   </Link>
