@@ -1,0 +1,238 @@
+/* ---------------------------------------------------------------
+   MediOrtho Link — global base styles
+   Design tokens + resets + element defaults ported from the former
+   Webflow generated stylesheet (whhub.webflow.shared.*.min.css).
+   Everything component specific lives in *.module.css files.
+   --------------------------------------------------------------- */
+
+:root {
+  /* Colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-deep-black: #010101;
+  --color-azure: #0083c3;
+  --color-alice-blue: #eff8fd;
+  --color-gray: #757575;
+  --color-medium-gray: #555555;
+  --color-slate-gray: #6e7276;
+  --color-white-10: rgba(255, 255, 255, 0.1);
+  --color-white-20: rgba(255, 255, 255, 0.2);
+  --color-white-30: rgba(255, 255, 255, 0.3);
+  --color-black-10: rgba(1, 1, 1, 0.1);
+
+  /* Typography scale */
+  --font-family-base: var(--font-urbanist), Urbanist, "Helvetica Neue", Arial, sans-serif;
+
+  --fs-paragraph: 1rem;
+  --lh-paragraph: 150%;
+  --fs-paragraph-s: 0.875rem;
+  --lh-paragraph-s: 140%;
+  --fs-paragraph-m: 1.125rem;
+  --lh-paragraph-m: 150%;
+  --fs-paragraph-l: 1.25rem;
+  --lh-paragraph-l: 150%;
+
+  --fs-h1: 5.625rem;
+  --lh-h1: 100%;
+  --fs-h2: 3.375rem;
+  --lh-h2: 120%;
+  --fs-h3: 2.625rem;
+  --lh-h3: 120%;
+  --fs-h4: 2.5rem;
+  --lh-h4: 120%;
+  --fs-h5: 1.875rem;
+  --lh-h5: 140%;
+  --fs-h6: 1.5rem;
+  --lh-h6: 150%;
+
+  --fw-light: 300;
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semi-bold: 600;
+  --fw-bold: 700;
+  --fw-extra-bold: 800;
+  --fw-heavy: 900;
+
+  /* Spacing */
+  --space-tiny: 0.25rem;
+  --space-xsmall: 0.5rem;
+  --space-xxsmall: 0.75rem;
+  --space-small: 1rem;
+  --space-medium: 1.25rem;
+  --space-regular: 1.5rem;
+  --space-normal: 2rem;
+  --space-large: 2.25rem;
+  --space-big: 2.5rem;
+  --space-xbig: 3rem;
+  --space-jumbo: 3.75rem;
+  --space-xjumbo: 4.56rem;
+  --space-massive: 5rem;
+  --space-colossal: 6.5rem;
+
+  /* Radii */
+  --radius-tiny: 0.25rem;
+  --radius-xsmall: 0.5rem;
+  --radius-xxsmall: 0.75rem;
+  --radius-small: 1rem;
+  --radius-medium: 1.25rem;
+  --radius-regular: 1.5rem;
+  --radius-large: 1.875rem;
+  --radius-big: 2rem;
+  --radius-soft: 3.75rem;
+  --radius-pill: 5rem;
+  --radius-circle: 100%;
+
+  /* Layout */
+  --container-width: 83rem;
+  --container-large: 100rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  background-color: var(--color-white);
+  color: var(--color-deep-black);
+  font-family: var(--font-family-base);
+  font-size: var(--fs-paragraph);
+  line-height: var(--lh-paragraph);
+  font-weight: var(--fw-normal);
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  color: var(--color-deep-black);
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+  font-weight: var(--fw-bold);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  font-weight: var(--fw-semi-bold);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  font-weight: var(--fw-semi-bold);
+}
+
+h4 {
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+  font-weight: var(--fw-semi-bold);
+}
+
+h5 {
+  font-size: var(--fs-h5);
+  line-height: var(--lh-h5);
+  font-weight: var(--fw-semi-bold);
+}
+
+h6 {
+  font-size: var(--fs-h6);
+  line-height: var(--lh-h6);
+  font-weight: var(--fw-semi-bold);
+}
+
+p {
+  margin: 0;
+  color: var(--color-deep-black);
+  font-size: var(--fs-paragraph);
+  line-height: var(--lh-paragraph);
+}
+
+b,
+strong {
+  font-weight: var(--fw-bold);
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+img,
+svg {
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+img {
+  display: inline-block;
+  border: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 0;
+  font-weight: var(--fw-bold);
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  color: inherit;
+  font: inherit;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  cursor: pointer;
+  -webkit-appearance: button;
+  appearance: button;
+  border: 0;
+}
+
+textarea {
+  overflow: auto;
+}
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding-left: 40px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,179 @@
+.footerSection {
+  background-color: #ffffff;
+  padding: 4rem 1.5rem;
+  width: 100%;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.footerCard {
+  background-color: #f8fafc;
+  border-radius: 1.5rem;
+  padding: 3.5rem 3rem 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e8f0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.8fr 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.logoWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logoIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background-color: #0ea5e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3);
+}
+
+.logoText {
+  font-size: 22px;
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+}
+
+.logoAccent {
+  color: #0ea5e9;
+}
+
+.brandBio {
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 300px;
+}
+
+.colTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 1.25rem 0;
+  letter-spacing: -0.2px;
+}
+
+.linksList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.footerLink {
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.footerLink:hover {
+  color: #0ea5e9;
+  transform: translateX(3px);
+}
+
+.addressText,
+.contactText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.addressText p,
+.contactText p {
+  color: #475569;
+  font-size: 0.885rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.phoneHighlight {
+  font-weight: 600;
+  color: #0f172a !important;
+  margin-top: 0.25rem !important;
+}
+
+.emailLink {
+  color: #0ea5e9;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.emailLink:hover {
+  color: #0284c7;
+}
+
+.hoursText {
+  color: #64748b !important;
+  font-size: 0.85rem !important;
+  margin-top: 0.25rem !important;
+}
+
+.divider {
+  height: 1px;
+  background-color: rgba(15, 23, 42, 0.08);
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.bottomBar {
+  text-align: center;
+}
+
+.copyrightText {
+  color: #64748b;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+@media (max-width: 991px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem 1.5rem;
+  }
+  .footerCard {
+    padding: 2.5rem 2rem 1.75rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .footerSection {
+    padding: 2.5rem 1rem;
+  }
+  .footerCard {
+    padding: 2rem 1.25rem 1.5rem;
+  }
+}

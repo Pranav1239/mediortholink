@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import styles from './AppointmentForm.module.css';
+import shared from '@/styles/shared.module.css';
 
 export default function AppointmentForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -12,34 +14,36 @@ export default function AppointmentForm() {
 
   if (submitted) {
     return (
-      <div style={{ background: '#ecfdf5', padding: '30px', borderRadius: '16px', border: '1px solid #10b981', textAlign: 'center' }}>
-        <h3 style={{ color: '#065f46', fontSize: '24px', marginBottom: '10px' }}>Appointment Request Received!</h3>
-        <p style={{ color: '#047857' }}>Thank you for booking with Whhub Healthcare. Our staff will contact you shortly to confirm your schedule.</p>
+      <div className={styles.success}>
+        <h3 className={styles.successTitle}>Appointment Request Received!</h3>
+        <p className={styles.successBody}>
+          Thank you for booking with Whhub Healthcare. Our staff will contact you shortly to confirm your schedule.
+        </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <div className={styles.row}>
         <div>
-          <label style={{ display: 'block', fontWeight: 600, marginBottom: '8px', color: '#334155' }}>Full Name *</label>
-          <input type="text" required placeholder="John Doe" style={{ width: '100%', padding: '14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '15px' }} />
+          <label htmlFor="af-name" className={styles.label}>Full Name *</label>
+          <input id="af-name" name="name" type="text" required placeholder="John Doe" className={styles.control} />
         </div>
         <div>
-          <label style={{ display: 'block', fontWeight: 600, marginBottom: '8px', color: '#334155' }}>Phone Number *</label>
-          <input type="tel" required placeholder="+1 (555) 000-0000" style={{ width: '100%', padding: '14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '15px' }} />
+          <label htmlFor="af-phone" className={styles.label}>Phone Number *</label>
+          <input id="af-phone" name="phone" type="tel" required placeholder="+1 (555) 000-0000" className={styles.control} />
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+      <div className={styles.row}>
         <div>
-          <label style={{ display: 'block', fontWeight: 600, marginBottom: '8px', color: '#334155' }}>Email Address *</label>
-          <input type="email" required placeholder="john@example.com" style={{ width: '100%', padding: '14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '15px' }} />
+          <label htmlFor="af-email" className={styles.label}>Email Address *</label>
+          <input id="af-email" name="email" type="email" required placeholder="john@example.com" className={styles.control} />
         </div>
         <div>
-          <label style={{ display: 'block', fontWeight: 600, marginBottom: '8px', color: '#334155' }}>Department *</label>
-          <select required defaultValue="orthopedics" style={{ width: '100%', padding: '14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '15px', background: '#fff' }}>
+          <label htmlFor="af-department" className={styles.label}>Department *</label>
+          <select id="af-department" name="department" required defaultValue="orthopedics" className={styles.control}>
             <option value="orthopedics">Orthopedics</option>
             <option value="dermatology">Dermatology</option>
             <option value="neurology">Neurology</option>
@@ -50,24 +54,25 @@ export default function AppointmentForm() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+      <div className={styles.row}>
         <div>
-          <label style={{ display: 'block', fontWeight: 600, marginBottom: '8px', color: '#334155' }}>Preferred Date *</label>
-          <input type="date" required style={{ width: '100%', padding: '14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '15px' }} />
+          <label htmlFor="af-date" className={styles.label}>Preferred Date *</label>
+          <input id="af-date" name="date" type="date" required className={styles.control} />
         </div>
         <div>
-          <label style={{ display: 'block', fontWeight: 600, marginBottom: '8px', color: '#334155' }}>Preferred Time *</label>
-          <input type="time" required style={{ width: '100%', padding: '14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '15px' }} />
+          <label htmlFor="af-time" className={styles.label}>Preferred Time *</label>
+          <input id="af-time" name="time" type="time" required className={styles.control} />
         </div>
       </div>
 
       <div>
-        <label style={{ display: 'block', fontWeight: 600, marginBottom: '8px', color: '#334155' }}>Message / Notes</label>
-        <textarea rows={4} placeholder="Briefly describe your symptoms or reason for visit..." style={{ width: '100%', padding: '14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '15px' }}></textarea>
+        <label htmlFor="af-message" className={styles.label}>Message / Notes</label>
+        <textarea id="af-message" name="message" rows={4} placeholder="Briefly describe your symptoms or reason for visit..." className={styles.control}></textarea>
       </div>
 
-      <button type="submit" className="primary-button" style={{ border: 'none', cursor: 'pointer', borderRadius: '10px', padding: '16px', fontSize: '16px', fontWeight: 600 }}>
-        <span className="primary-button-text">CONFIRM BOOKING</span>
+      <button type="submit" className={`${shared.primaryButton} ${styles.submit}`}>
+        <span className={shared.primaryButtonText}>CONFIRM BOOKING</span>
+        <span className={shared.primaryButtonBg}></span>
       </button>
     </form>
   );

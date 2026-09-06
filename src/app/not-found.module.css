@@ -1,0 +1,32 @@
+.section {
+  position: relative;
+  padding: 160px 0 100px;
+  text-align: center;
+  background-color: #0f172a;
+  background-image: url("/images/695a19fddebb5c513831606f_Background_Image_1.webp");
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.code {
+  margin-bottom: 10px;
+  color: #ffffff;
+  font-size: 80px;
+  line-height: 1;
+}
+
+.title {
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-size: 32px;
+}
+
+.lede {
+  max-width: 500px;
+  margin: 0 auto 30px;
+  color: #ffffff;
+  font-size: var(--fs-paragraph-l);
+  line-height: var(--lh-paragraph-l);
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+}

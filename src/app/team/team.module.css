@@ -1,0 +1,39 @@
+.memberCard {
+  padding: 32px;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  text-align: center;
+}
+
+.memberPhoto {
+  display: block;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 20px;
+  border: 3px solid #0ea5e9;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.memberName {
+  margin-bottom: 6px;
+  color: #0f172a;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.memberRole {
+  margin-bottom: 14px;
+  color: #0ea5e9;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.memberBio {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+}

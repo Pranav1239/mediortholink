@@ -1,0 +1,10 @@
+/* Ported from Webflow's .page-wrapper / .main-wrapper */
+
+.pageWrapper {
+  overflow: clip;
+}
+
+.mainWrapper {
+  display: block;
+  width: 100%;
+}
