@@ -7,11 +7,11 @@ import local from './faqs.module.css';
 const faqs = [
   {
     q: 'When was MediOrtho Link founded and where are you located?',
-    a: 'MediOrtho Link was founded in the year 2013 in Bangalore by Vinod Kumar & Sunil Kumar. We operate from a 2,500 square feet office and warehousing facility in Yeshwanthpur, Bangalore, Karnataka.',
+    a: 'MediOrtho Link was founded in the year 2013 in Bangalore. We operate from No. 18, 1st Floor, 1st Main Road, Gokul 1st Stage, 3rd Phase, Yeshwanthpur, Bangalore, Karnataka - 560022.',
   },
   {
     q: 'What certifications does MediOrtho Link hold?',
-    a: 'We are certified by the Government of India with ISO & MSME Registration, ensuring all orthopaedic implants and surgical goods meet international global quality standards.',
+    a: 'We are certified by the Government of India with ISO 13485:2012 & MSME Registration, ensuring all orthopaedic implants and surgical goods meet international global quality standards.',
   },
   {
     q: 'What products does MediOrtho Link distribute?',
@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     q: 'What are MediOrtho Link’s core principles?',
-    a: 'Our business is built on 3 core principles: 1. Honesty (building strong trust & high integrity), 2. Sincerity (caring for customer needs above selling), and 3. Excellence (striving for betterment at every level).',
+    a: 'Our business is built on 3 core principles: 1. Compliance (ISO 13485:2012 adherence), 2. Quality Assurance (stringent quality norms and thorough checks), and 3. Commitment (collaboration and innovation in orthopedic care).',
   },
 ];
 

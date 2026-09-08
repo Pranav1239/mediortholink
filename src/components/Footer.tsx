@@ -1,10 +1,26 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import styles from './Footer.module.css';
+import { nucleus } from '@/lib/nucleus';
 
-export default function Footer() {
+const fallbackSettings = {
+  brandBio:
+    'MediOrtho Link is a renowned distributor of orthopaedic implants and surgical goods, founded in 2013 in Bangalore. Certified by the Government of India with ISO 13485:2012 and MSME registration, we connect healthcare professionals with exceptional orthopaedic implants and surgical goods, fostering excellence in patient care.',
+  addressLine1: 'No. 18, 1st Floor, 1st Main Road, Gokul 1st Stage, 3rd Phase',
+  addressLine2: 'Yeshwanthpur, Bangalore, Karnataka - 560022',
+  certificationText: 'ISO 13485:2012 & MSME, Govt. of India Certified',
+  officePhone: '+91 98451 64422',
+  salesPhone: '+91 94830 64422',
+  email: 'mediortholink4@gmail.com',
+  businessHours: '',
+};
+
+export default async function Footer() {
+  const settings = await nucleus
+    .findOne('site-settings', {})
+    .then((entry) => entry?.data ?? fallbackSettings)
+    .catch(() => fallbackSettings);
+
   return (
     <footer className={styles.footerSection}>
       <div className={styles.container}>
@@ -24,7 +40,7 @@ export default function Footer() {
                 </span>
               </Link>
               <p className={styles.brandBio}>
-                At MediOrtho Link, we connect top-tier healthcare professionals and orthopedic surgeons with global-quality implants, trauma fixation systems, and surgical goods across India.
+                {settings.brandBio}
               </p>
             </div>
 
@@ -36,6 +52,7 @@ export default function Footer() {
                 <li><Link href="/about" className={styles.footerLink}>About Us</Link></li>
                 <li><Link href="/services" className={styles.footerLink}>Products</Link></li>
                 <li><Link href="/faqs" className={styles.footerLink}>FAQs</Link></li>
+                <li><Link href="/blogs" className={styles.footerLink}>Blogs</Link></li>
                 <li><Link href="/contact" className={styles.footerLink}>Contact Us</Link></li>
               </ul>
             </div>
@@ -44,10 +61,10 @@ export default function Footer() {
             <div className={styles.addressCol}>
               <h4 className={styles.colTitle}>Office Address</h4>
               <div className={styles.addressText}>
-                <p>2,500 Sq. Ft. Facility, Yeshwanthpur</p>
-                <p>Bangalore, Karnataka 560022, India</p>
-                <p>Govt. ISO &amp; MSME Certified</p>
-                <p className={styles.phoneHighlight}>Ph: +91 98450 00000</p>
+                <p>{settings.addressLine1}</p>
+                <p>{settings.addressLine2}</p>
+                <p>{settings.certificationText}</p>
+                <p className={styles.phoneHighlight}>Ph: {settings.officePhone}</p>
               </div>
             </div>
 
@@ -55,10 +72,10 @@ export default function Footer() {
             <div className={styles.contactCol}>
               <h4 className={styles.colTitle}>Contact Us</h4>
               <div className={styles.contactText}>
-                <p><a href="mailto:info@mediortholink.com" className={styles.emailLink}>info@mediortholink.com</a></p>
-                <p>+91 98450 00000 - Office</p>
-                <p>+91 80 2345 6789 - Sales</p>
-                <p className={styles.hoursText}>Mon to Sat: 9:00AM &ndash; 6:00PM</p>
+                <p><a href={`mailto:${settings.email}`} className={styles.emailLink}>{settings.email}</a></p>
+                <p>{settings.officePhone} - Office</p>
+                <p>{settings.salesPhone} - Sales</p>
+                {settings.businessHours && <p className={styles.hoursText}>{settings.businessHours}</p>}
               </div>
             </div>
           </div>
@@ -67,7 +84,7 @@ export default function Footer() {
           <div className={styles.divider} />
           <div className={styles.bottomBar}>
             <p className={styles.copyrightText}>
-              MediOrtho Link LLC {new Date().getFullYear()} | All Rights Reserved.
+              MediOrtho Link {new Date().getFullYear()} | All Rights Reserved.
             </p>
           </div>
         </div>

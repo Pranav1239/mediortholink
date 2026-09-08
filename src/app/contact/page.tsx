@@ -9,17 +9,17 @@ const contactCards = [
   {
     icon: '📍',
     title: 'Office Address',
-    lines: ['2,500 Sq. Ft. Facility, Yeshwanthpur,', 'Bangalore, Karnataka, India'],
+    lines: ['No. 18, 1st Floor, 1st Main Road,', 'Gokul 1st Stage, 3rd Phase, Yeshwanthpur,', 'Bangalore, Karnataka - 560022'],
   },
   {
     icon: '📞',
-    title: 'Founders & Support',
-    lines: ['Vinod Kumar & Sunil Kumar', 'Phone: +91 98450 00000', 'Email: info@mediortholink.com'],
+    title: 'Customer Support',
+    lines: ['Phone: +91 98451 64422, +91 94830 64422', 'Email: mediortholink4@gmail.com', 'Email: info@mediortholink.com'],
   },
   {
     icon: '🛡️',
     title: 'Government Certifications',
-    lines: ['Govt. of India Certified', 'ISO & MSME Registered', 'Global Quality Standard Implants'],
+    lines: ['Govt. of India Certified', 'ISO 13485:2012 & MSME Registered', 'Global Quality Standard Implants'],
   },
 ];
 
@@ -35,7 +35,7 @@ export default function ContactPage() {
             Get in Touch with Our <span className={styles.accent}>Bangalore Office</span>
           </h1>
           <p className={`${styles.lede} ${styles.ledeNarrow}`}>
-            Operating from our 2,500 sq. ft. facility at Yeshwanthpur, Bangalore. We are here to assist surgeons, hospitals, and medical device partners across the Indian subcontinent.
+            Operating from our facility at Yeshwanthpur, Bangalore. We are here to assist surgeons, hospitals, and medical device partners across the Indian subcontinent.
           </p>
         </div>
 

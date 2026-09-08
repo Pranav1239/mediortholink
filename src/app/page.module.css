@@ -18,12 +18,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow: visible;
+  overflow: hidden;
   background-color: #0f172a;
-  background-image: url("/images/695a19fddebb5c513831606f_Background_Image_1.webp");
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .heroWrapper {
@@ -820,12 +816,17 @@
   flex-shrink: 0;
   border-radius: 1.75rem;
   overflow: hidden;
+  background-color: #eff6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .solutionImage {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 0.75rem;
   transition: transform 0.6s ease;
 }
 
@@ -920,6 +921,148 @@
   .comprehensivePara {
     font-size: var(--fs-paragraph-s);
     line-height: var(--lh-paragraph-s);
+  }
+}
+
+/* =============================================================
+   LATEST PRODUCTS
+   ============================================================= */
+
+.latestTop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-small);
+  margin-bottom: 2.5rem;
+}
+
+.latestHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.latestTitle {
+  margin: 0;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+}
+
+.latestViewAll {
+  color: #0ea5e9;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+.latestViewAll:hover {
+  opacity: 0.7;
+}
+
+.latestGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+}
+
+.latestCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.5rem;
+  background-color: var(--color-white);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.latestCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -12px rgba(14, 165, 233, 0.25);
+  border-color: #0ea5e9;
+}
+
+.latestImageWrap {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background-color: #eff6ff;
+  overflow: hidden;
+}
+
+.latestImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.latestCard:hover .latestImage {
+  transform: scale(1.08);
+}
+
+.latestImagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #e0f2fe 0%, #eff6ff 100%);
+}
+
+.latestBadge {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  background-color: #0ea5e9;
+  color: var(--color-white);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.latestCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.25rem 1.4rem 1.5rem;
+}
+
+.latestCategory {
+  color: #0ea5e9;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.latestName {
+  margin: 0;
+  color: #0f172a;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.latestSku {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 991px) {
+  .latestGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .latestGrid {
+    grid-template-columns: 1fr;
   }
 }
 

@@ -109,6 +109,156 @@
   background-color: #38bdf8;
 }
 
+/* Products mega menu --------------------------------------------- */
+
+.megaTrigger {
+  position: static;
+}
+
+.megaTriggerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.megaPanel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.22s ease, transform 0.22s ease, max-height 0.22s ease, visibility 0.22s ease;
+  visibility: hidden;
+  background-color: #ffffff;
+  border-top: 3px solid #0ea5e9;
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.22);
+  z-index: 999;
+}
+
+.megaPanelOpen {
+  max-height: 640px;
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.megaPanelGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 28px;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 32px 1.5rem 20px;
+}
+
+.megaColumn {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.megaColumnTitle {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0f2fe;
+  color: #0f172a;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.megaColumnTitle:hover {
+  color: #0ea5e9;
+  border-color: #0ea5e9;
+}
+
+.megaList {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.megaList::-webkit-scrollbar {
+  width: 4px;
+}
+
+.megaList::-webkit-scrollbar-thumb {
+  background-color: #e2e8f0;
+  border-radius: 4px;
+}
+
+.megaLink {
+  display: block;
+  color: #475569;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  line-height: 1.35;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.megaLink:hover {
+  color: #0ea5e9;
+  transform: translateX(2px);
+}
+
+.megaFooter {
+  border-top: 1px solid #f1f5f9;
+  background-color: #f8fafc;
+  padding: 14px 1.5rem;
+  text-align: center;
+}
+
+.megaFooterLink {
+  color: #0ea5e9;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.megaFooterLink:hover {
+  text-decoration: underline;
+}
+
+/* Mobile drawer product accordion -------------------------------- */
+
+.drawerProductsBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.drawerCategoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.25rem 0 0.75rem 1rem;
+}
+
+.drawerCategoryLink {
+  padding: 0.6rem 0;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.drawerCategoryLink:hover {
+  color: #38bdf8;
+}
+
 /* Right cluster ------------------------------------------------ */
 
 .rightCluster {

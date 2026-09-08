@@ -1,0 +1,66 @@
+.carousel {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background-color: #0f172a;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.slideActive {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 15, 30, 0.72) 0%,
+    rgba(8, 15, 30, 0.5) 32%,
+    rgba(8, 15, 30, 0.42) 55%,
+    rgba(8, 15, 30, 0.8) 100%
+  );
+}
+
+.dots {
+  position: absolute;
+  left: 50%;
+  bottom: 4.5rem;
+  z-index: 3;
+  display: flex;
+  gap: 10px;
+  transform: translateX(-50%);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: background-color 0.25s ease, width 0.25s ease;
+}
+
+.dot:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.dotActive {
+  width: 26px;
+  background-color: #0ea5e9;
+}
+
+@media (max-width: 767px) {
+  .dots {
+    bottom: 2.5rem;
+  }
+}
