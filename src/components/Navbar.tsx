@@ -195,9 +195,9 @@ export default function Navbar({ categoryMenu = [] }: { categoryMenu?: CategoryM
 
         {/* Right CTA & Mobile Toggle */}
         <div className={styles.rightCluster}>
-          <a href="tel:+919845164422" className={styles.phonePill}>
-            <PhoneIcon size={14} stroke="#0ea5e9" />
-            <span>+91 98451 64422</span>
+          <a href="tel:+919845164422" className={styles.callButton} aria-label="Call MediOrtho Link at +91 98451 64422">
+            <PhoneIcon size={15} stroke="#ffffff" />
+            <span className={styles.callButtonText}>Call Now</span>
           </a>
 
           <button
