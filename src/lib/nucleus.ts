@@ -1,4 +1,5 @@
 import { createClient } from "@techsolace-studios/nucleus-sdk";
+import type { NucleusClient, NucleusConfig } from "@techsolace-studios/nucleus-sdk";
 
 declare module "@techsolace-studios/nucleus-sdk" {
   interface NucleusModels {
@@ -58,14 +59,34 @@ declare module "@techsolace-studios/nucleus-sdk" {
   }
 }
 
-export const nucleus = createClient({
+// `createClient` validates its config synchronously and throws if the
+// endpoint/API key env vars aren't set. Every call site already falls back
+// to static content via `.catch(...)`, so rather than letting a missing
+// env var crash the whole build (every page that imports Footer/Navbar),
+// swap in a stub client whose methods reject — the existing fallbacks
+// then kick in as designed. Real credentials still get a real client.
+function safeCreateClient(config: NucleusConfig): NucleusClient {
+  try {
+    return createClient(config);
+  } catch (error) {
+    console.error(
+      `[nucleus] client not configured, falling back to static content: ${
+        error instanceof Error ? error.message : String(error)
+      }`
+    );
+    const reject = () => Promise.reject(error);
+    return new Proxy({} as NucleusClient, { get: () => reject });
+  }
+}
+
+export const nucleus = safeCreateClient({
   endpoint: process.env.NUCLEUS_ENDPOINT!,
   apiKey: process.env.NUCLEUS_API_KEY!,
   projectId: "mediortholink",
   environment: "staging",
 });
 
-export const nucleusWrite = createClient({
+export const nucleusWrite = safeCreateClient({
   endpoint: process.env.NUCLEUS_ENDPOINT!,
   apiKey: process.env.NUCLEUS_WRITE_API_KEY!,
   projectId: "mediortholink",
