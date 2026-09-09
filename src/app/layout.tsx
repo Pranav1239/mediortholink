@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next';
 import { Urbanist } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import WhatsAppButton from '@/components/WhatsAppButton';
 import { nucleus } from '@/lib/nucleus';
 import './globals.css';
 import styles from './layout.module.css';
@@ -68,6 +69,7 @@ export default async function RootLayout({
             <Footer />
           </div>
         </div>
+        <WhatsAppButton />
       </body>
     </html>
   );

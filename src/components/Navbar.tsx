@@ -186,6 +186,11 @@ export default function Navbar({ categoryMenu = [] }: { categoryMenu?: CategoryM
             Blogs
             {(pathname === '/blogs' || pathname?.startsWith('/blogs/')) && <span className={styles.navLinkUnderline} />}
           </Link>
+
+          <Link href="/contact" className={`${styles.navLink} ${pathname === '/contact' ? styles.navLinkActive : ''}`} aria-current={pathname === '/contact' ? 'page' : undefined}>
+            Contact Us
+            {pathname === '/contact' && <span className={styles.navLinkUnderline} />}
+          </Link>
         </nav>
 
         {/* Right CTA & Mobile Toggle */}
