@@ -24,8 +24,8 @@ const steps = [
     num: '02',
     title: 'ISO & MSME Quality Assured Selection',
     subtitle: 'Global Quality & Certified Procurement',
-    desc: 'Sourced and managed at our 2500 sq. ft. facility in Yeshwanthpur, Bangalore, ensuring full compliance with ISO standards and Government of India MSME registration.',
-    highlights: ['ISO & MSME Certified', '2500 Sq. Ft. Facility', 'Global Implant Standards'],
+    desc: 'Sourced and managed at our facility in Yeshwanthpur, Bangalore, ensuring full compliance with ISO 13485:2012 standards and Government of India MSME registration.',
+    highlights: ['ISO 13485:2012 & MSME Certified', 'Yeshwanthpur, Bangalore', 'Global Implant Standards'],
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M4.8 2.3A.3.3 0 0 0 4.5 2.6V5A4 4 0 0 0 8 9h12a2 2 0 0 0 2-2V4.5a.5.5 0 0 0-.5-.5H4.8z" />

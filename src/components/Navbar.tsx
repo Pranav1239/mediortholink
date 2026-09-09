@@ -1,18 +1,24 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
 
-const mainNavLinks = [
+export interface CategoryMenuGroup {
+  category: string;
+  subcategories: string[];
+}
+
+const drawerLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About Us' },
   { href: '/services', label: 'Products' },
-  { href: '/faqs', label: 'FAQs' },
+  { href: '/#faq', label: 'FAQs' },
+  { href: '/blogs', label: 'Blogs' },
+  { href: '/contact', label: 'Contact Us' },
 ];
-
-const drawerLinks = [...mainNavLinks, { href: '/contact', label: 'Contact Us' }];
 
 function PhoneIcon({ size, stroke }: { size: number; stroke: string }) {
   return (
@@ -22,10 +28,31 @@ function PhoneIcon({ size, stroke }: { size: number; stroke: string }) {
   );
 }
 
-export default function Navbar() {
+function ChevronIcon({ open }: { open: boolean }) {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      style={{ transition: 'transform 0.25s ease', transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
+    >
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  );
+}
+
+export default function Navbar({ categoryMenu = [] }: { categoryMenu?: CategoryMenuGroup[] }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const pathname = usePathname();
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 30);
@@ -34,12 +61,33 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close the drawer whenever the route changes.
+  // Close the drawer / mega menu whenever the route changes.
   useEffect(() => {
     setMenuOpen(false);
+    setProductsOpen(false);
+    setMobileProductsOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    if (!productsOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setProductsOpen(false);
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [productsOpen]);
+
   const closeMenu = () => setMenuOpen(false);
+
+  const openProducts = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setProductsOpen(true);
+  };
+
+  const scheduleCloseProducts = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setProductsOpen(false), 180);
+  };
 
   const isSubpage = pathname !== '/';
 
@@ -51,44 +99,100 @@ export default function Navbar() {
     .filter(Boolean)
     .join(' ');
 
+  const catParam = (name: string) => `/services?category=${encodeURIComponent(name)}`;
+  const subParam = (cat: string, sub: string) =>
+    `/services?category=${encodeURIComponent(cat)}&subcategory=${encodeURIComponent(sub)}`;
+
   return (
     <header className={headerClass}>
       <div className={`${styles.inner} ${scrolled ? styles.innerScrolled : ''}`}>
         {/* Brand Logo */}
         <Link href="/" onClick={closeMenu} className={styles.brand}>
-          <div className={styles.brandMark}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M12 4V20M4 12H20" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <span className={styles.brandText}>
-            MEDI<span className={styles.brandAccent}>ORTHO</span> LINK
-          </span>
+          <Image
+            src="/images/logo.png"
+            width={383}
+            height={383}
+            priority
+            alt="MediOrtho Link"
+            className={styles.brandLogo}
+          />
         </Link>
 
         {/* Desktop Navigation Links */}
         <nav className={styles.desktopNav}>
-          {mainNavLinks.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`${styles.navLink} ${isActive ? styles.navLinkActive : ''}`}
-                aria-current={isActive ? 'page' : undefined}
-              >
-                {link.label}
-                {isActive && <span className={styles.navLinkUnderline} />}
-              </Link>
-            );
-          })}
+          <Link href="/" className={`${styles.navLink} ${pathname === '/' ? styles.navLinkActive : ''}`} aria-current={pathname === '/' ? 'page' : undefined}>
+            Home
+            {pathname === '/' && <span className={styles.navLinkUnderline} />}
+          </Link>
+          <Link href="/about" className={`${styles.navLink} ${pathname === '/about' ? styles.navLinkActive : ''}`} aria-current={pathname === '/about' ? 'page' : undefined}>
+            About Us
+            {pathname === '/about' && <span className={styles.navLinkUnderline} />}
+          </Link>
+
+          {/* Products — hover mega menu */}
+          <div
+            className={styles.megaTrigger}
+            onMouseEnter={openProducts}
+            onMouseLeave={scheduleCloseProducts}
+          >
+            <Link
+              href="/services"
+              className={`${styles.navLink} ${styles.megaTriggerLink} ${pathname === '/services' ? styles.navLinkActive : ''}`}
+              aria-current={pathname === '/services' ? 'page' : undefined}
+              aria-expanded={productsOpen}
+              onClick={() => setProductsOpen(false)}
+            >
+              Products
+              <ChevronIcon open={productsOpen} />
+              {pathname === '/services' && <span className={styles.navLinkUnderline} />}
+            </Link>
+
+            {categoryMenu.length > 0 && (
+              <div className={`${styles.megaPanel} ${productsOpen ? styles.megaPanelOpen : ''}`}>
+                <div className={styles.megaPanelGrid}>
+                  {categoryMenu.map((group) => (
+                    <div key={group.category} className={styles.megaColumn}>
+                      <Link href={catParam(group.category)} className={styles.megaColumnTitle} onClick={() => setProductsOpen(false)}>
+                        {group.category}
+                      </Link>
+                      {group.subcategories.length > 0 && (
+                        <ul className={styles.megaList}>
+                          {group.subcategories.map((sub) => (
+                            <li key={sub}>
+                              <Link href={subParam(group.category, sub)} className={styles.megaLink} onClick={() => setProductsOpen(false)}>
+                                {sub}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <div className={styles.megaFooter}>
+                  <Link href="/services" className={styles.megaFooterLink} onClick={() => setProductsOpen(false)}>
+                    View Full Catalog &rarr;
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <Link href="/#faq" className={styles.navLink}>
+            FAQs
+          </Link>
+
+          <Link href="/blogs" className={`${styles.navLink} ${pathname === '/blogs' || pathname?.startsWith('/blogs/') ? styles.navLinkActive : ''}`} aria-current={pathname === '/blogs' ? 'page' : undefined}>
+            Blogs
+            {(pathname === '/blogs' || pathname?.startsWith('/blogs/')) && <span className={styles.navLinkUnderline} />}
+          </Link>
         </nav>
 
         {/* Right CTA & Mobile Toggle */}
         <div className={styles.rightCluster}>
-          <a href="tel:+919845000000" className={styles.phonePill}>
+          <a href="tel:+919845164422" className={styles.phonePill}>
             <PhoneIcon size={14} stroke="#0ea5e9" />
-            <span>+91 98450 00000</span>
+            <span>+91 98451 64422</span>
           </a>
 
           <button
@@ -108,31 +212,59 @@ export default function Navbar() {
         <div className={`${styles.drawer} ${scrolled ? styles.drawerScrolled : ''}`}>
           <div className={styles.drawerLinks}>
             <span className={styles.drawerLabel}>Navigation Menu</span>
-            {drawerLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={closeMenu}
-                className={`${styles.drawerLink} ${pathname === link.href ? styles.drawerLinkActive : ''}`}
-              >
-                <span>{link.label}</span>
-                <span className={styles.drawerArrow}>&rarr;</span>
-              </Link>
-            ))}
+            {drawerLinks.map((link) =>
+              link.href === '/services' ? (
+                <div key={link.href} className={styles.drawerProductsBlock}>
+                  <div className={styles.drawerLink} style={{ cursor: 'pointer' }} onClick={() => setMobileProductsOpen((o) => !o)}>
+                    <span>{link.label}</span>
+                    <span className={styles.drawerArrow}>
+                      <ChevronIcon open={mobileProductsOpen} />
+                    </span>
+                  </div>
+                  {mobileProductsOpen && (
+                    <div className={styles.drawerCategoryList}>
+                      <Link href="/services" onClick={closeMenu} className={styles.drawerCategoryLink}>
+                        All Products
+                      </Link>
+                      {categoryMenu.map((group) => (
+                        <Link
+                          key={group.category}
+                          href={catParam(group.category)}
+                          onClick={closeMenu}
+                          className={styles.drawerCategoryLink}
+                        >
+                          {group.category}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeMenu}
+                  className={`${styles.drawerLink} ${pathname === link.href ? styles.drawerLinkActive : ''}`}
+                >
+                  <span>{link.label}</span>
+                  <span className={styles.drawerArrow}>&rarr;</span>
+                </Link>
+              )
+            )}
           </div>
 
           <div className={styles.drawerFooter}>
             <div className={styles.drawerCard}>
               <p className={styles.drawerCardTitle}>MediOrtho Link HQ</p>
               <p className={styles.drawerCardBody}>
-                2,500 Sq. Ft. Facility &bull; Yeshwanthpur, Bangalore<br />
-                Govt. ISO &amp; MSME Certified Distributors
+                Yeshwanthpur, Bangalore, Karnataka<br />
+                Govt. ISO 13485:2012 &amp; MSME Certified Distributors
               </p>
             </div>
 
-            <a href="tel:+919845000000" className={styles.drawerCall}>
+            <a href="tel:+919845164422" className={styles.drawerCall}>
               <PhoneIcon size={16} stroke="currentColor" />
-              <span>Call +91 98450 00000</span>
+              <span>Call +91 98451 64422</span>
             </a>
           </div>
         </div>

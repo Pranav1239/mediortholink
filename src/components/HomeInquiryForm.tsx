@@ -4,17 +4,39 @@ import React, { useState } from 'react';
 import styles from '@/app/page.module.css';
 
 export default function HomeInquiryForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'submitted' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    setStatus('submitting');
+
+    try {
+      const res = await fetch('/api/inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          category: formData.get('field'),
+          name: formData.get('Your-Name'),
+          phone: formData.get('Phone-Number'),
+          preferredDate: formData.get('Date'),
+        }),
+      });
+      if (!res.ok) throw new Error('Request failed');
+      setStatus('submitted');
+      form.reset();
+    } catch {
+      setStatus('error');
+    }
+  };
 
   return (
     <form
       id="wf-form-Contact-Form"
       name="wf-form-Contact-Form"
       className={styles.contactForm}
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSubmitted(true);
-      }}
+      onSubmit={handleSubmit}
     >
       <h2 className={styles.appointmentTitle}>Request Implants &amp; Surgical Goods</h2>
       <div className={styles.formFields}>
@@ -22,9 +44,9 @@ export default function HomeInquiryForm() {
         <select id="field" name="field" required className={styles.selectDoctor} defaultValue="">
           <option value="">Choose Product Category</option>
           <option value="Orthopaedic Implants">Orthopaedic Implants (Joints/Trauma/Spine)</option>
-          <option value="Surgical Goods">Surgical Goods &amp; Instruments</option>
+          <option value="Surgical Goods & Instruments">Surgical Goods &amp; Instruments</option>
           <option value="Manufacturer Partnership">Manufacturer Partnership</option>
-          <option value="Surgeon Collaboration">Surgeon / Clinical Collaboration</option>
+          <option value="Surgeon / Clinical Collaboration">Surgeon / Clinical Collaboration</option>
         </select>
       </div>
       <div className={styles.formFields}>
@@ -39,8 +61,14 @@ export default function HomeInquiryForm() {
         <label htmlFor="Date" className={styles.inputTitle}>Preferred Contact Date</label>
         <input type="date" id="Date" name="Date" className={styles.inputField} />
       </div>
-      <button type="submit" className={styles.contactButton}>
-        {submitted ? 'Inquiry Received — We Will Be In Touch' : 'Submit Inquiry Now'}
+      <button type="submit" className={styles.contactButton} disabled={status === 'submitting'}>
+        {status === 'submitted'
+          ? 'Inquiry Received — We Will Be In Touch'
+          : status === 'error'
+          ? 'Something Went Wrong — Try Again'
+          : status === 'submitting'
+          ? 'Submitting…'
+          : 'Submit Inquiry Now'}
       </button>
     </form>
   );

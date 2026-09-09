@@ -8,19 +8,19 @@
   right: 0;
   width: 100%;
   z-index: 1000;
-  background-color: transparent;
-  border-bottom: 1px solid transparent;
+  background-color: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .headerScrolled {
-  background-color: rgba(15, 23, 42, 0.95);
-  border-bottom-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background-color: #ffffff;
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .headerMenuOpen {
-  background-color: rgba(15, 23, 42, 0.95);
+  background-color: #ffffff;
 }
 
 .inner {
@@ -48,28 +48,10 @@
   white-space: nowrap;
 }
 
-.brandMark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
-  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4);
-}
-
-.brandText {
-  display: inline-block;
-  color: #ffffff;
-  font-size: 22px;
-  font-weight: 900;
-  letter-spacing: -0.5px;
-  white-space: nowrap;
-}
-
-.brandAccent {
-  color: #0ea5e9;
+.brandLogo {
+  height: 76px;
+  width: auto;
+  display: block;
 }
 
 /* Desktop nav -------------------------------------------------- */
@@ -83,7 +65,7 @@
 .navLink {
   position: relative;
   padding: 0.4rem 0;
-  color: #e2e8f0;
+  color: #0f172a;
   font-size: 0.925rem;
   font-weight: 500;
   text-decoration: none;
@@ -109,6 +91,156 @@
   background-color: #38bdf8;
 }
 
+/* Products mega menu --------------------------------------------- */
+
+.megaTrigger {
+  position: static;
+}
+
+.megaTriggerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.megaPanel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.22s ease, transform 0.22s ease, max-height 0.22s ease, visibility 0.22s ease;
+  visibility: hidden;
+  background-color: #ffffff;
+  border-top: 3px solid #0ea5e9;
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.22);
+  z-index: 999;
+}
+
+.megaPanelOpen {
+  max-height: 640px;
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.megaPanelGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 28px;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 32px 1.5rem 20px;
+}
+
+.megaColumn {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.megaColumnTitle {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0f2fe;
+  color: #0f172a;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.megaColumnTitle:hover {
+  color: #0ea5e9;
+  border-color: #0ea5e9;
+}
+
+.megaList {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.megaList::-webkit-scrollbar {
+  width: 4px;
+}
+
+.megaList::-webkit-scrollbar-thumb {
+  background-color: #e2e8f0;
+  border-radius: 4px;
+}
+
+.megaLink {
+  display: block;
+  color: #475569;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  line-height: 1.35;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.megaLink:hover {
+  color: #0ea5e9;
+  transform: translateX(2px);
+}
+
+.megaFooter {
+  border-top: 1px solid #f1f5f9;
+  background-color: #f8fafc;
+  padding: 14px 1.5rem;
+  text-align: center;
+}
+
+.megaFooterLink {
+  color: #0ea5e9;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.megaFooterLink:hover {
+  text-decoration: underline;
+}
+
+/* Mobile drawer product accordion -------------------------------- */
+
+.drawerProductsBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.drawerCategoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.25rem 0 0.75rem 1rem;
+}
+
+.drawerCategoryLink {
+  padding: 0.6rem 0;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.drawerCategoryLink:hover {
+  color: #38bdf8;
+}
+
 /* Right cluster ------------------------------------------------ */
 
 .rightCluster {
@@ -122,10 +254,10 @@
   align-items: center;
   gap: 8px;
   padding: 0.5rem 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(14, 165, 233, 0.3);
   border-radius: 9999px;
-  background-color: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
+  background-color: rgba(14, 165, 233, 0.05);
+  color: #0ea5e9;
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
@@ -134,7 +266,7 @@
 }
 
 .phonePill:hover {
-  background-color: rgba(255, 255, 255, 0.16);
+  background-color: rgba(14, 165, 233, 0.1);
 }
 
 .toggleButton {
@@ -143,10 +275,10 @@
   justify-content: center;
   width: 42px;
   height: 42px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(15, 23, 42, 0.1);
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  background-color: #f1f5f9;
+  color: #0f172a;
   font-size: 1.2rem;
   cursor: pointer;
   outline: none;
@@ -155,7 +287,7 @@
 }
 
 .toggleButtonOpen {
-  background-color: #0ea5e9;
+  background-color: #e2e8f0;
 }
 
 /* Mobile drawer ------------------------------------------------ */
