@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Footer.module.css';
 import { nucleus } from '@/lib/nucleus';
@@ -30,14 +31,13 @@ export default async function Footer() {
             {/* Column 1: Brand & Bio */}
             <div className={styles.brandCol}>
               <Link href="/" className={styles.logoWrap}>
-                <div className={styles.logoIcon}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 4V20M4 12H20" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <span className={styles.logoText}>
-                  MEDI<span className={styles.logoAccent}>ORTHO</span> LINK
-                </span>
+                <Image
+                  src="/images/logo.png"
+                  width={383}
+                  height={383}
+                  alt="MediOrtho Link"
+                  className={styles.footerLogo}
+                />
               </Link>
               <p className={styles.brandBio}>
                 {settings.brandBio}
@@ -51,7 +51,7 @@ export default async function Footer() {
                 <li><Link href="/" className={styles.footerLink}>Home</Link></li>
                 <li><Link href="/about" className={styles.footerLink}>About Us</Link></li>
                 <li><Link href="/services" className={styles.footerLink}>Products</Link></li>
-                <li><Link href="/faqs" className={styles.footerLink}>FAQs</Link></li>
+                <li><Link href="/#faq" className={styles.footerLink}>FAQs</Link></li>
                 <li><Link href="/blogs" className={styles.footerLink}>Blogs</Link></li>
                 <li><Link href="/contact" className={styles.footerLink}>Contact Us</Link></li>
               </ul>

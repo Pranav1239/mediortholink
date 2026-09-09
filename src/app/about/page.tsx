@@ -187,9 +187,6 @@ export default async function AboutPage() {
                     <p className={styles.aboutDesignCardDesc}>
                       Certified by the Government of India with ISO 13485:2012 and MSME registration, ensuring maximum surgical precision and international safety standards.
                     </p>
-                    <Link href="/services" className={styles.aboutDesignPillBtn}>
-                      Read More <span className={styles.chevron}>&rsaquo;</span>
-                    </Link>
                   </div>
 
                   {/* Card 2: Neutral Off-White */}
@@ -198,9 +195,6 @@ export default async function AboutPage() {
                     <p className={styles.aboutDesignCardDesc}>
                       Operating from our facility in Yeshwanthpur, Bangalore, equipped for warehousing and rapid order fulfillment.
                     </p>
-                    <Link href="/contact" className={styles.aboutDesignPillBtn}>
-                      Read More <span className={styles.chevron}>&rsaquo;</span>
-                    </Link>
                   </div>
                 </div>
 
@@ -210,9 +204,6 @@ export default async function AboutPage() {
                   <p className={styles.aboutDesignCardDesc}>
                     Over a decade of trusted distribution of orthopaedic joint replacements, trauma plates, and specialized surgical instruments to leading healthcare providers.
                   </p>
-                  <Link href="/services" className={styles.aboutDesignPillBtn}>
-                    Read More <span className={styles.chevron}>&rsaquo;</span>
-                  </Link>
                 </div>
               </div>
             </div>

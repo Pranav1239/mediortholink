@@ -1067,6 +1067,131 @@
 }
 
 /* =============================================================
+   LATEST BLOGS
+   ============================================================= */
+
+.blogsSectionWrapper {
+  padding-top: 1rem;
+  padding-bottom: 5.5rem;
+}
+
+.blogsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.blogsCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.5rem;
+  background-color: var(--color-white);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.blogsCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -12px rgba(14, 165, 233, 0.25);
+  border-color: #0ea5e9;
+}
+
+.blogsImageWrap {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  background-color: #eff6ff;
+  overflow: hidden;
+}
+
+.blogsImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.blogsImagePlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle at 16px 16px, rgba(255, 255, 255, 0.14) 1.5px, transparent 1.5px),
+    linear-gradient(135deg, #0ea5e9 0%, #075985 100%);
+  background-size: 20px 20px, auto;
+}
+
+.blogsImagePlaceholder img {
+  width: 30%;
+  max-width: 64px;
+  min-width: 40px;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.blogsCard:hover .blogsImage {
+  transform: scale(1.08);
+}
+
+.blogsCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.4rem 1.5rem 1.6rem;
+}
+
+.blogsMeta {
+  color: #0ea5e9;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.blogsTitle {
+  margin: 0;
+  color: #0f172a;
+  font-size: 1.1rem;
+  line-height: 1.35;
+  font-weight: 800;
+}
+
+.blogsExcerpt {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blogsReadMore {
+  margin-top: 0.2rem;
+  color: #0ea5e9;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 991px) {
+  .blogsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .blogsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =============================================================
    WHY / CORE VALUES
    ============================================================= */
 
@@ -1110,8 +1235,8 @@
 
 .whyCards {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
   width: 100%;
 }
 
@@ -1125,13 +1250,14 @@
   height: 100%;
   padding: var(--space-xjumbo) var(--space-big);
   border: 1px solid var(--color-black-10);
-  border-top-left-radius: var(--radius-small);
-  border-bottom-left-radius: var(--radius-small);
-  transition: background-color 0.25s ease;
+  border-radius: var(--radius-small);
+  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
 
 .whyCard:hover {
   background-color: var(--color-alice-blue);
+  border-color: #0ea5e9;
+  transform: translateY(-4px);
 }
 
 .whyIcon {
@@ -1173,11 +1299,7 @@
   }
 
   .whyCards {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .whyCard {
-    border-radius: 0;
+    grid-template-columns: 1fr;
   }
 
   .careText {
@@ -1819,6 +1941,26 @@
   border: 2px solid #0ea5e9;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.testiIconPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: 2px solid #0ea5e9;
+  border-radius: 50%;
+  background-image:
+    radial-gradient(circle at 8px 8px, rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(135deg, #0ea5e9 0%, #075985 100%);
+  background-size: 10px 10px, auto;
+}
+
+.testiIconPlaceholderMark {
+  width: 46%;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
 }
 
 .testiIconQuote {

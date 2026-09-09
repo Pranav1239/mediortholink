@@ -110,7 +110,15 @@ export default async function BlogDetailPage({
           {post.coverImage ? (
             <img src={post.coverImage} alt={post.title} className={local.postCoverImage} />
           ) : (
-            <div className={local.postCoverPlaceholder}>📰</div>
+            <div className={`${local.coverArt} ${local.coverArtVariant1}`}>
+              <div className={local.coverArtGlow} />
+              <img
+                src="/images/68f06809395a46f2d4696554_Group_3.svg"
+                alt=""
+                aria-hidden="true"
+                className={local.coverArtMark}
+              />
+            </div>
           )}
         </div>
 

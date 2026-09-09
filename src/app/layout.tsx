@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   description:
     'MediOrtho Link, founded in 2013 in Bangalore, is a Govt. of India certified (ISO 13485:2012 & MSME) distributor of orthopaedic implants & surgical goods in Yeshwanthpur, Bangalore.',
   icons: {
-    icon: '/images/68ef4f6f725f45bc2392aff8_Group.png',
-    apple: '/images/68ef4f71a167946204ad4b4b_Group_1.png',
+    icon: '/images/logo.png',
+    apple: '/images/logo.png',
   },
 };
 

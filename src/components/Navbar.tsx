@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
@@ -14,7 +15,7 @@ const drawerLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About Us' },
   { href: '/services', label: 'Products' },
-  { href: '/faqs', label: 'FAQs' },
+  { href: '/#faq', label: 'FAQs' },
   { href: '/blogs', label: 'Blogs' },
   { href: '/contact', label: 'Contact Us' },
 ];
@@ -107,14 +108,14 @@ export default function Navbar({ categoryMenu = [] }: { categoryMenu?: CategoryM
       <div className={`${styles.inner} ${scrolled ? styles.innerScrolled : ''}`}>
         {/* Brand Logo */}
         <Link href="/" onClick={closeMenu} className={styles.brand}>
-          <div className={styles.brandMark}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M12 4V20M4 12H20" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <span className={styles.brandText}>
-            MEDI<span className={styles.brandAccent}>ORTHO</span> LINK
-          </span>
+          <Image
+            src="/images/logo.png"
+            width={383}
+            height={383}
+            priority
+            alt="MediOrtho Link"
+            className={styles.brandLogo}
+          />
         </Link>
 
         {/* Desktop Navigation Links */}
@@ -177,9 +178,8 @@ export default function Navbar({ categoryMenu = [] }: { categoryMenu?: CategoryM
             )}
           </div>
 
-          <Link href="/faqs" className={`${styles.navLink} ${pathname === '/faqs' ? styles.navLinkActive : ''}`} aria-current={pathname === '/faqs' ? 'page' : undefined}>
+          <Link href="/#faq" className={styles.navLink}>
             FAQs
-            {pathname === '/faqs' && <span className={styles.navLinkUnderline} />}
           </Link>
 
           <Link href="/blogs" className={`${styles.navLink} ${pathname === '/blogs' || pathname?.startsWith('/blogs/') ? styles.navLinkActive : ''}`} aria-current={pathname === '/blogs' ? 'page' : undefined}>

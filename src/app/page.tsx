@@ -1,6 +1,7 @@
 import ProcessSteps from "@/components/ProcessSteps";
 import HomeInquiryForm from "@/components/HomeInquiryForm";
 import HeroCarousel from "@/components/HeroCarousel";
+import FaqAccordion from "@/components/FaqAccordion";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -37,6 +38,22 @@ export default async function HomePage() {
         image: p.image,
       }))
     );
+
+  const latestBlogs = await nucleus
+    .getAll("blogs", { limit: 100 }, { revalidate: 300 })
+    .then((entries) =>
+      entries
+        .map((entry) => ({
+          slug: entry.data.slug,
+          title: entry.data.title,
+          excerpt: entry.data.excerpt ?? "",
+          coverImage: entry.data.coverImage ?? "",
+          publishedDate: entry.data.publishedDate,
+        }))
+        .sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime())
+        .slice(0, 3)
+    )
+    .catch(() => []);
 
   return (
     <>
@@ -90,6 +107,83 @@ export default async function HomePage() {
         />
       </section>
 
+      {/* EXCELLENCE & INFRASTRUCTURE SECTION (Redesigned per Reference Image) */}
+      <section className={styles.aboutDesignSection}>
+        <div className={shared.container}>
+          <div className={styles.aboutDesignWrapper}>
+
+            {/* Top Header Row */}
+            <div className={styles.aboutDesignHeader}>
+              <div className={styles.aboutDesignHeaderLeft}>
+                <p className={styles.aboutDesignSubtag}>Govt. Certified ISO &amp; MSME</p>
+                <h2 className={styles.aboutDesignTitle}>
+                  MediOrtho Link provides global quality implants for surgical excellence.
+                </h2>
+              </div>
+              <div className={styles.aboutDesignMetrics}>
+                <div className={styles.metricItem}>
+                  <span className={styles.metricNumber}>15+ Yrs</span>
+                  <span className={styles.metricLabel}>Industry Experience</span>
+                </div>
+                <div className={styles.metricItem}>
+                  <span className={styles.metricNumber}>2013</span>
+                  <span className={styles.metricLabel}>Founded in Bangalore</span>
+                </div>
+                <div className={styles.metricItem}>
+                  <span className={styles.metricNumber}>100%</span>
+                  <span className={styles.metricLabel}>ISO &amp; MSME Certified</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Main Body Grid */}
+            <div className={styles.aboutDesignBody}>
+              {/* Left Tall Portrait Image Card */}
+              <div className={styles.aboutDesignImageCard}>
+                <Image
+                  src="/images/new/SPINE-Surgical-home-page-Category-600x452.jpg"
+                  width={1200}
+                  height={1400}
+                  alt="MediOrtho Link Infrastructure & Implants"
+                  className={styles.aboutDesignMainImage}
+                />
+              </div>
+
+              {/* Right Cards Grid */}
+              <div className={styles.aboutDesignCardsGrid}>
+                {/* Top Cards Row */}
+                <div className={styles.aboutDesignCardRow}>
+                  {/* Card 1: Light Pastel Blue */}
+                  <div className={`${styles.aboutDesignCard} ${styles.aboutDesignCardBlue}`}>
+                    <h3 className={styles.aboutDesignCardTitle}>ISO 13485:2012 &amp; MSME Certified</h3>
+                    <p className={styles.aboutDesignCardDesc}>
+                      Certified by the Government of India with ISO 13485:2012 and MSME registration, ensuring maximum surgical precision and international safety standards.
+                    </p>
+                  </div>
+
+                  {/* Card 2: Neutral Off-White */}
+                  <div className={`${styles.aboutDesignCard} ${styles.aboutDesignCardGray}`}>
+                    <h3 className={styles.aboutDesignCardTitle}>Yeshwanthpur, Bangalore Hub</h3>
+                    <p className={styles.aboutDesignCardDesc}>
+                      Operating from our facility in Yeshwanthpur, Bangalore, equipped for warehousing and rapid order fulfillment.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Bottom Card: Full-width */}
+                <div className={`${styles.aboutDesignCard} ${styles.aboutDesignCardGray} ${styles.aboutDesignCardFull}`}>
+                  <h3 className={styles.aboutDesignCardTitle}>Pan-India &amp; Subcontinent Supply</h3>
+                  <p className={styles.aboutDesignCardDesc}>
+                    Over a decade of trusted distribution of orthopaedic joint replacements, trauma plates, and specialized surgical instruments to leading healthcare providers.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* ABOUT MEDI ORTHO LINK SECTION */}
       <section className={styles.discoverSection}>
         <Image
@@ -137,11 +231,11 @@ export default async function HomePage() {
                 <div className={styles.appointmentCard}>
                   <div className={styles.appointmentFlex}>
                     <Image
-                      src="/images/new/IMG_0527-300x300.jpg"
+                      src="/images/new/SURGICAL-INSTRUMENTS-Surgical-home-page-Category-600x452.jpg"
                       width={300}
                       height={300}
                       loading="lazy"
-                      alt="MediOrtho Link team celebrating a milestone"
+                      alt="MediOrtho Link surgical instruments"
                       className={styles.appointmentImage}
                     />
                     <div className={styles.appointmentBlock}>
@@ -157,12 +251,12 @@ export default async function HomePage() {
               </div>
               <div className={styles.aboutRight}>
                 <Image
-                  src="/images/new/IMG_7094-1-300x300.jpg"
+                  src="/images/new/TRAUMA-Surgical-home-page-Category-600x452.jpg"
                   width={300}
                   height={300}
                   loading="lazy"
                   sizes="(max-width: 767px) 100vw, 45vw"
-                  alt="MediOrtho Link team welcoming visiting partners at their Bangalore office"
+                  alt="MediOrtho Link trauma products"
                   className={styles.aboutImage}
                 />
               </div>
@@ -305,92 +399,6 @@ export default async function HomePage() {
       {/* PROCESS STEPS */}
       <ProcessSteps />
 
-      {/* EXCELLENCE & INFRASTRUCTURE SECTION (Redesigned per Reference Image) */}
-      <section className={styles.aboutDesignSection}>
-        <div className={shared.container}>
-          <div className={styles.aboutDesignWrapper}>
-            
-            {/* Top Header Row */}
-            <div className={styles.aboutDesignHeader}>
-              <div className={styles.aboutDesignHeaderLeft}>
-                <p className={styles.aboutDesignSubtag}>Govt. Certified ISO &amp; MSME</p>
-                <h2 className={styles.aboutDesignTitle}>
-                  MediOrtho Link provides global quality implants for surgical excellence.
-                </h2>
-              </div>
-              <div className={styles.aboutDesignMetrics}>
-                <div className={styles.metricItem}>
-                  <span className={styles.metricNumber}>15+ Yrs</span>
-                  <span className={styles.metricLabel}>Industry Experience</span>
-                </div>
-                <div className={styles.metricItem}>
-                  <span className={styles.metricNumber}>2013</span>
-                  <span className={styles.metricLabel}>Founded in Bangalore</span>
-                </div>
-                <div className={styles.metricItem}>
-                  <span className={styles.metricNumber}>100%</span>
-                  <span className={styles.metricLabel}>ISO &amp; MSME Certified</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Main Body Grid */}
-            <div className={styles.aboutDesignBody}>
-              {/* Left Tall Portrait Image Card */}
-              <div className={styles.aboutDesignImageCard}>
-                <Image
-                  src="/images/698c244c655aa1ba0a300fa1_Frame_1000003067.webp"
-                  width={1200}
-                  height={1400}
-                  alt="MediOrtho Link Infrastructure & Implants"
-                  className={styles.aboutDesignMainImage}
-                />
-              </div>
-
-              {/* Right Cards Grid */}
-              <div className={styles.aboutDesignCardsGrid}>
-                {/* Top Cards Row */}
-                <div className={styles.aboutDesignCardRow}>
-                  {/* Card 1: Light Pastel Blue */}
-                  <div className={`${styles.aboutDesignCard} ${styles.aboutDesignCardBlue}`}>
-                    <h3 className={styles.aboutDesignCardTitle}>ISO 13485:2012 &amp; MSME Certified</h3>
-                    <p className={styles.aboutDesignCardDesc}>
-                      Certified by the Government of India with ISO 13485:2012 and MSME registration, ensuring maximum surgical precision and international safety standards.
-                    </p>
-                    <Link href="/services" className={styles.aboutDesignPillBtn}>
-                      Read More <span className={styles.chevron}>&rsaquo;</span>
-                    </Link>
-                  </div>
-
-                  {/* Card 2: Neutral Off-White */}
-                  <div className={`${styles.aboutDesignCard} ${styles.aboutDesignCardGray}`}>
-                    <h3 className={styles.aboutDesignCardTitle}>Yeshwanthpur, Bangalore Hub</h3>
-                    <p className={styles.aboutDesignCardDesc}>
-                      Operating from our facility in Yeshwanthpur, Bangalore, equipped for warehousing and rapid order fulfillment.
-                    </p>
-                    <Link href="/contact" className={styles.aboutDesignPillBtn}>
-                      Read More <span className={styles.chevron}>&rsaquo;</span>
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Bottom Card: Full-width */}
-                <div className={`${styles.aboutDesignCard} ${styles.aboutDesignCardGray} ${styles.aboutDesignCardFull}`}>
-                  <h3 className={styles.aboutDesignCardTitle}>Pan-India &amp; Subcontinent Supply</h3>
-                  <p className={styles.aboutDesignCardDesc}>
-                    Over a decade of trusted distribution of orthopaedic joint replacements, trauma plates, and specialized surgical instruments to leading healthcare providers.
-                  </p>
-                  <Link href="/services" className={styles.aboutDesignPillBtn}>
-                    Read More <span className={styles.chevron}>&rsaquo;</span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
       {/* APPOINTMENT / INQUIRY FORM */}
       <section className={shared.section}>
         <div className={shared.container}>
@@ -401,7 +409,7 @@ export default async function HomePage() {
               </div>
             </div>
             <Image
-              src="/images/696a80deed8fbcbc1b7aa4b1_Frame_141_1.webp"
+              src="/images/female_doctor_writing.jpg"
               width={1821}
               height={2199}
               sizes="(max-width: 991px) 100vw, 45vw"
@@ -428,15 +436,21 @@ export default async function HomePage() {
               {[...testimonials, ...testimonials].map((testi, idx) => (
                 <div key={idx} className={styles.testimonialsMarqueeItem}>
                   <div className={styles.topTestimonial}>
-                    <Image
-                      src={testi.image || "/images/698cb68ab2803d1b98558b5d_Profile_Image.webp"}
-                      width={240}
-                      height={240}
-                      loading="lazy"
-                      sizes="52px"
-                      alt={testi.name}
-                      className={styles.testiIcon}
-                    />
+                    {testi.image ? (
+                      <Image
+                        src={testi.image}
+                        width={240}
+                        height={240}
+                        loading="lazy"
+                        sizes="52px"
+                        alt={testi.name}
+                        className={styles.testiIcon}
+                      />
+                    ) : (
+                      <div className={styles.testiIconPlaceholder} aria-hidden="true">
+                        <img src={badgeIcon} alt="" className={styles.testiIconPlaceholderMark} />
+                      </div>
+                    )}
                     <Image
                       src="/images/698cb6c54e15a0922e59ac51_Frame_95876.webp"
                       width={208}
@@ -462,8 +476,62 @@ export default async function HomePage() {
         </div>
       </section>
       )}
+
+      {/* FAQ */}
+      <section id="faq" className={shared.section} style={{ scrollMarginTop: "110px" }}>
+        <div className={shared.container}>
+          <FaqAccordion />
+        </div>
+      </section>
+
+      {/* LATEST FROM THE BLOG */}
+      {latestBlogs.length > 0 && (
+      <section className={shared.section}>
+        <div className={`${shared.container} ${styles.blogsSectionWrapper}`}>
+          <div className={styles.latestTop}>
+            <div className={styles.aboutFlex}>
+              <Image src={badgeIcon} width={22} height={21} alt="" aria-hidden="true" className={styles.aboutIcon} />
+              <p className={styles.aboutYear}>MediOrtho Link Blog</p>
+            </div>
+            <div className={styles.latestHeaderRow}>
+              <h2 className={styles.latestTitle}>Insights &amp; Updates</h2>
+              <Link href="/blogs" className={styles.latestViewAll}>
+                View All Articles &rarr;
+              </Link>
+            </div>
+          </div>
+          <div className={styles.blogsGrid}>
+            {latestBlogs.map((post) => (
+              <Link key={post.slug} href={`/blogs/${post.slug}`} className={styles.blogsCard}>
+                <div className={styles.blogsImageWrap}>
+                  {post.coverImage ? (
+                    <img src={post.coverImage} alt={post.title} className={styles.blogsImage} />
+                  ) : (
+                    <div className={styles.blogsImagePlaceholder}>
+                      <img src="/images/68f06809395a46f2d4696554_Group_3.svg" alt="" aria-hidden="true" />
+                    </div>
+                  )}
+                </div>
+                <div className={styles.blogsCardBody}>
+                  <span className={styles.blogsMeta}>{formatBlogDate(post.publishedDate)}</span>
+                  <h3 className={styles.blogsTitle}>{post.title}</h3>
+                  {post.excerpt && <p className={styles.blogsExcerpt}>{post.excerpt}</p>}
+                  <span className={styles.blogsReadMore}>Read Details &rarr;</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+      )}
     </>
   );
+}
+
+function formatBlogDate(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleDateString("en-IN", { year: "numeric", month: "long", day: "numeric" });
 }
 
 const badgeIcon = "/images/68f06809395a46f2d4696554_Group_3.svg";

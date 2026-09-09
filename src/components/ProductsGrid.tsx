@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
@@ -40,6 +40,27 @@ export default function ProductsGrid({ products }: { products: GridProduct[] }) 
   const [searchQuery, setSearchQuery] = useState('');
   const [page, setPage] = useState(1);
   const gridTopRef = React.useRef<HTMLDivElement>(null);
+
+  // Clicking a mega-menu / footer link while already on this page only changes the
+  // URL's query string — Next.js doesn't remount this component for that, so the
+  // filters need to re-sync from the URL whenever it changes rather than just on mount.
+  const searchParamsKey = searchParams.toString();
+  useEffect(() => {
+    const fromUrlCategory = searchParams.get('category');
+    const nextCategory =
+      fromUrlCategory && products.some((p) => p.category === fromUrlCategory) ? fromUrlCategory : CATEGORY_ALL;
+
+    const fromUrlSubcategory = searchParams.get('subcategory');
+    const nextSubcategory =
+      fromUrlSubcategory && products.some((p) => p.category === nextCategory && p.subcategory === fromUrlSubcategory)
+        ? fromUrlSubcategory
+        : SUBCATEGORY_ALL;
+
+    setSelectedCategory(nextCategory);
+    setSelectedSubcategory(nextSubcategory);
+    setPage(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParamsKey]);
 
   const categories = [CATEGORY_ALL, ...Array.from(new Set(products.map((p) => p.category))).sort()];
 
