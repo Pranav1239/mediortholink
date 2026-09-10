@@ -310,7 +310,7 @@ export default function ProductsGrid({ products }: { products: GridProduct[] }) 
           </button>
         </div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '32px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(360px, 100%), 1fr))', gap: '32px' }}>
           {pagedProducts.map((prod) => (
             <div
               key={prod.slug}
