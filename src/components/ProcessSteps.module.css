@@ -183,6 +183,16 @@
   text-align: center;
 }
 
+@media (max-width: 600px) {
+  .heading {
+    font-size: 28px;
+  }
+
+  .sub {
+    font-size: 15px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .card {
     opacity: 1;

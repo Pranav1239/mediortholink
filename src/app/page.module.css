@@ -901,6 +901,16 @@
   }
 }
 
+@media screen and (max-width: 600px) {
+  .sectionHeading {
+    font-size: 1.75rem;
+  }
+
+  .sectionSub {
+    font-size: 15px;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .solutionMarqueeItem {
     width: 360px;
@@ -1058,11 +1068,21 @@
   .latestGrid {
     grid-template-columns: 1fr 1fr;
   }
+
+  .latestTitle {
+    font-size: var(--fs-h3);
+    line-height: var(--lh-h3);
+  }
 }
 
 @media screen and (max-width: 600px) {
   .latestGrid {
     grid-template-columns: 1fr;
+  }
+
+  .latestTitle {
+    font-size: var(--fs-h4);
+    line-height: var(--lh-h4);
   }
 }
 
@@ -1300,6 +1320,11 @@
 
   .whyCards {
     grid-template-columns: 1fr;
+  }
+
+  .whyTitle {
+    font-size: var(--fs-h3);
+    line-height: var(--lh-h3);
   }
 
   .careText {
@@ -1873,6 +1898,8 @@
 }
 
 .completeText {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
   text-align: center;
 }
 
@@ -2003,11 +2030,25 @@
   font-weight: 500;
 }
 
+@media screen and (max-width: 991px) {
+  .completeText {
+    font-size: var(--fs-h3);
+    line-height: var(--lh-h3);
+  }
+}
+
 @media screen and (max-width: 767px) {
   .testimonialsMarqueeItem {
     width: 310px;
     min-width: 310px;
     padding: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .completeText {
+    font-size: 1.85rem;
+    line-height: 1.25;
   }
 }
 
