@@ -90,11 +90,13 @@ export default function Navbar({ categoryMenu = [] }: { categoryMenu?: CategoryM
   };
 
   const isSubpage = pathname !== '/';
+  const isTransparent = !isSubpage && !scrolled && !menuOpen;
 
   const headerClass = [
     styles.header,
     scrolled || isSubpage ? styles.headerScrolled : '',
     menuOpen ? styles.headerMenuOpen : '',
+    isTransparent ? styles.headerTransparent : '',
   ]
     .filter(Boolean)
     .join(' ');
