@@ -28,6 +28,73 @@ function PhoneIcon({ size, stroke }: { size: number; stroke: string }) {
   );
 }
 
+function HomeIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M3 10.5 12 3l9 7.5" />
+      <path d="M5.5 9.5V20a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h2.5a1 1 0 0 0 1-1V9.5" />
+    </svg>
+  );
+}
+
+function InfoIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v5.5" />
+      <circle cx="12" cy="7.75" r="0.5" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function BoxIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 8.5 12 3 3 8.5 12 14l9-5.5Z" />
+      <path d="M3 8.5V16l9 5 9-5V8.5" />
+      <path d="M12 14v7" />
+    </svg>
+  );
+}
+
+function QuestionIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9.5 9.25a2.5 2.5 0 0 1 4.9.75c0 1.67-2.4 1.9-2.4 3.5" />
+      <circle cx="12" cy="16.75" r="0.5" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function DocumentIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M6 3.5h8l4 4V20a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" />
+      <path d="M14 3.5V8h4" />
+      <path d="M8.5 12.5h7M8.5 16h5" />
+    </svg>
+  );
+}
+
+function MailIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m4 6.5 8 6.2 8-6.2" />
+    </svg>
+  );
+}
+
+const drawerIcons: Record<string, React.ReactNode> = {
+  '/': <HomeIcon />,
+  '/about': <InfoIcon />,
+  '/services': <BoxIcon />,
+  '/#faq': <QuestionIcon />,
+  '/blogs': <DocumentIcon />,
+  '/contact': <MailIcon />,
+};
+
 function ChevronIcon({ open }: { open: boolean }) {
   return (
     <svg
@@ -235,63 +302,89 @@ export default function Navbar({ categoryMenu = [] }: { categoryMenu?: CategoryM
 
       {/* Mobile Drawer Menu */}
       {menuOpen && (
-        <div className={`${styles.drawer} ${scrolled ? styles.drawerScrolled : ''}`}>
-          <div className={styles.drawerLinks}>
-            <span className={styles.drawerLabel}>Navigation Menu</span>
-            {drawerLinks.map((link) =>
-              link.href === '/services' ? (
-                <div key={link.href} className={styles.drawerProductsBlock}>
-                  <div className={styles.drawerLink} style={{ cursor: 'pointer' }} onClick={() => setMobileProductsOpen((o) => !o)}>
-                    <span>{link.label}</span>
-                    <span className={styles.drawerArrow}>
-                      <ChevronIcon open={mobileProductsOpen} />
-                    </span>
-                  </div>
-                  {mobileProductsOpen && (
-                    <div className={styles.drawerCategoryList}>
-                      <Link href="/services" onClick={closeMenu} className={styles.drawerCategoryLink}>
-                        All Products
-                      </Link>
-                      {categoryMenu.map((group) => (
-                        <Link
-                          key={group.category}
-                          href={catParam(group.category)}
-                          onClick={closeMenu}
-                          className={styles.drawerCategoryLink}
-                        >
-                          {group.category}
-                        </Link>
-                      ))}
+        <div className={styles.drawerOverlay}>
+          <div className={styles.drawerScroll}>
+            <span className={styles.drawerLabel}>Navigation</span>
+            <nav className={styles.drawerLinks}>
+              {drawerLinks.map((link) => {
+                const isActive =
+                  link.href === '/'
+                    ? pathname === '/'
+                    : link.href === '/services'
+                    ? pathname === '/services' || pathname?.startsWith('/services/')
+                    : link.href === '/blogs'
+                    ? pathname === '/blogs' || pathname?.startsWith('/blogs/')
+                    : pathname === link.href;
+
+                if (link.href === '/services') {
+                  return (
+                    <div key={link.href} className={styles.drawerProductsBlock}>
+                      <div
+                        className={`${styles.drawerLink} ${isActive ? styles.drawerLinkActive : ''} ${mobileProductsOpen ? styles.drawerLinkExpanded : ''}`}
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => setMobileProductsOpen((o) => !o)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') setMobileProductsOpen((o) => !o);
+                        }}
+                        aria-expanded={mobileProductsOpen}
+                      >
+                        <span className={styles.drawerLinkIcon}>{drawerIcons[link.href]}</span>
+                        <span className={styles.drawerLinkLabel}>{link.label}</span>
+                        <span className={styles.drawerArrow}>
+                          <ChevronIcon open={mobileProductsOpen} />
+                        </span>
+                      </div>
+                      {mobileProductsOpen && (
+                        <div className={styles.drawerCategoryList}>
+                          <Link href="/services" onClick={closeMenu} className={styles.drawerCategoryLink}>
+                            All Products
+                          </Link>
+                          {categoryMenu.map((group) => (
+                            <Link
+                              key={group.category}
+                              href={catParam(group.category)}
+                              onClick={closeMenu}
+                              className={styles.drawerCategoryLink}
+                            >
+                              {group.category}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={closeMenu}
-                  className={`${styles.drawerLink} ${pathname === link.href ? styles.drawerLinkActive : ''}`}
-                >
-                  <span>{link.label}</span>
-                  <span className={styles.drawerArrow}>&rarr;</span>
-                </Link>
-              )
-            )}
-          </div>
+                  );
+                }
 
-          <div className={styles.drawerFooter}>
-            <div className={styles.drawerCard}>
-              <p className={styles.drawerCardTitle}>MediOrtho Link HQ</p>
-              <p className={styles.drawerCardBody}>
-                Yeshwanthpur, Bangalore, Karnataka<br />
-                Govt. ISO 13485:2012 &amp; MSME Certified Distributors
-              </p>
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={closeMenu}
+                    className={`${styles.drawerLink} ${isActive ? styles.drawerLinkActive : ''}`}
+                  >
+                    <span className={styles.drawerLinkIcon}>{drawerIcons[link.href]}</span>
+                    <span className={styles.drawerLinkLabel}>{link.label}</span>
+                    <span className={styles.drawerArrow}>&rarr;</span>
+                  </Link>
+                );
+              })}
+            </nav>
+
+            <div className={styles.drawerFooter}>
+              <div className={styles.drawerCard}>
+                <p className={styles.drawerCardTitle}>MediOrtho Link HQ</p>
+                <p className={styles.drawerCardBody}>
+                  Yeshwanthpur, Bangalore, Karnataka<br />
+                  Govt. ISO 13485:2012 &amp; MSME Certified Distributors
+                </p>
+              </div>
+
+              <a href="tel:+919845164422" className={styles.drawerCall}>
+                <PhoneIcon size={16} stroke="currentColor" />
+                <span>Call +91 98451 64422</span>
+              </a>
             </div>
-
-            <a href="tel:+919845164422" className={styles.drawerCall}>
-              <PhoneIcon size={16} stroke="currentColor" />
-              <span>Call +91 98451 64422</span>
-            </a>
           </div>
         </div>
       )}
