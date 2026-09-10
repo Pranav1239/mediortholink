@@ -51,14 +51,30 @@ export default function Navbar({ categoryMenu = [] }: { categoryMenu?: CategoryM
   const [scrolled, setScrolled] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [headerHeight, setHeaderHeight] = useState<number | null>(null);
   const pathname = usePathname();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 30);
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Track the header's actual rendered height (it changes with the logo size,
+  // scrolled padding, and breakpoint) so the mobile drawer can start exactly
+  // below it instead of at a guessed fixed offset.
+  useEffect(() => {
+    const el = innerRef.current;
+    if (!el || typeof ResizeObserver === 'undefined') return;
+    const observer = new ResizeObserver((entries) => {
+      const height = entries[0]?.contentRect.height;
+      if (height) setHeaderHeight(Math.round(height));
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   // Close the drawer / mega menu whenever the route changes.
@@ -106,8 +122,11 @@ export default function Navbar({ categoryMenu = [] }: { categoryMenu?: CategoryM
     `/services?category=${encodeURIComponent(cat)}&subcategory=${encodeURIComponent(sub)}`;
 
   return (
-    <header className={headerClass}>
-      <div className={`${styles.inner} ${scrolled ? styles.innerScrolled : ''}`}>
+    <header
+      className={headerClass}
+      style={headerHeight ? ({ '--header-height': `${headerHeight}px` } as React.CSSProperties) : undefined}
+    >
+      <div ref={innerRef} className={`${styles.inner} ${scrolled ? styles.innerScrolled : ''}`}>
         {/* Brand Logo */}
         <Link href="/" onClick={closeMenu} className={styles.brand}>
           <Image

@@ -313,7 +313,7 @@
 
 .drawer {
   position: fixed;
-  top: 72px;
+  top: var(--header-height, 72px);
   left: 0;
   right: 0;
   bottom: 0;
@@ -326,10 +326,6 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   overflow-y: auto;
-}
-
-.drawerScrolled {
-  top: 62px;
 }
 
 .drawerLinks {
@@ -428,5 +424,35 @@
 
   .toggleButton {
     display: flex;
+  }
+
+  .inner {
+    padding: 0.85rem 1.25rem;
+  }
+
+  .innerScrolled {
+    padding: 0.6rem 1.25rem;
+  }
+
+  .brandLogo {
+    height: 56px;
+  }
+}
+
+@media (max-width: 479px) {
+  .inner {
+    padding: 0.7rem 1rem;
+  }
+
+  .innerScrolled {
+    padding: 0.55rem 1rem;
+  }
+
+  .brandLogo {
+    height: 48px;
+  }
+
+  .rightCluster {
+    gap: 0.6rem;
   }
 }

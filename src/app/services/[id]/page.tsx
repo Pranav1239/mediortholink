@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { getProductById, products as fallbackProductsData } from '@/data/products';
 import { nucleus } from '@/lib/nucleus';
 import type { NucleusModels } from '@techsolace-studios/nucleus-sdk';
+import styles from '../services.module.css';
 
 export async function generateStaticParams() {
   const slugs = await nucleus
@@ -76,20 +77,12 @@ export default async function ProductDetailPage({
       <div style={{ maxWidth: '1180px', margin: '0 auto', padding: '48px 1.5rem 100px' }}>
 
         {/* Product Hero */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'minmax(320px, 460px) 1fr',
-            gap: '48px',
-            marginBottom: '56px',
-          }}
-        >
+        <div className={styles.detailHero}>
           {/* Image column */}
           <div>
             <div
+              className={styles.detailImageSticky}
               style={{
-                position: 'sticky',
-                top: '110px',
                 backgroundColor: '#f1f5f9',
                 borderRadius: '24px',
                 overflow: 'hidden',
@@ -125,7 +118,7 @@ export default async function ProductDetailPage({
               {product.subcategory && ` › ${product.subcategory}`}
             </span>
 
-            <h1 style={{ fontSize: '36px', fontWeight: 900, color: '#0f172a', lineHeight: 1.15, marginBottom: '18px' }}>
+            <h1 className={styles.detailTitle} style={{ fontSize: '36px', fontWeight: 900, color: '#0f172a', lineHeight: 1.15, marginBottom: '18px' }}>
               {product.name}
             </h1>
 
@@ -135,9 +128,9 @@ export default async function ProductDetailPage({
 
             {/* Quick spec strip */}
             <div
+              className={styles.detailQuickSpecs}
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
                 gap: '1px',
                 backgroundColor: '#e2e8f0',
                 border: '1px solid #e2e8f0',
@@ -217,7 +210,7 @@ export default async function ProductDetailPage({
             </div>
 
             {/* Trust points */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
+            <div className={styles.detailTrustGrid} style={{ display: 'grid', gap: '14px' }}>
               {trustPoints.map((point) => (
                 <div key={point.label} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <span style={{ fontSize: '18px', flexShrink: 0 }}>{point.icon}</span>
@@ -237,7 +230,7 @@ export default async function ProductDetailPage({
             <p style={{ fontSize: '14px', color: '#64748b', marginBottom: '24px' }}>
               Precision detailing for {product.name.toLowerCase()}, verified against clinical and export documentation standards.
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '16px' }}>
+            <div className={styles.detailSpecGrid} style={{ display: 'grid', gap: '16px' }}>
               {product.specs.map((spec, idx) => (
                 <div
                   key={idx}
@@ -266,6 +259,7 @@ export default async function ProductDetailPage({
 
         {/* Closing CTA banner */}
         <div
+          className={styles.detailClosingCta}
           style={{
             display: 'flex',
             flexWrap: 'wrap',
@@ -311,7 +305,6 @@ export default async function ProductDetailPage({
                 fontWeight: 700,
                 fontSize: '14px',
                 textDecoration: 'none',
-                whiteSpace: 'nowrap',
               }}
             >
               Browse {product.category} →

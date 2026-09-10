@@ -70,3 +70,52 @@
   font-size: 32px;
   font-weight: 800;
 }
+
+/* ---------------------------------------------------------------
+   Product detail page
+   --------------------------------------------------------------- */
+
+.detailHero {
+  display: grid;
+  grid-template-columns: minmax(min(320px, 100%), 460px) 1fr;
+  gap: 48px;
+  margin-bottom: 56px;
+}
+
+.detailImageSticky {
+  position: sticky;
+  top: 110px;
+}
+
+.detailQuickSpecs {
+  grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr));
+}
+
+.detailTrustGrid {
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+}
+
+.detailSpecGrid {
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+}
+
+@media (max-width: 860px) {
+  .detailHero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .detailImageSticky {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .detailTitle {
+    font-size: 28px !important;
+  }
+
+  .detailClosingCta {
+    padding: 28px 24px !important;
+  }
+}
